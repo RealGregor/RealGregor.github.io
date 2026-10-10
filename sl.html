@@ -9,7 +9,7 @@
 <link rel="preload" href="fonts/Kalam-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/IMFellEnglish-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
-<script>(function () { var sw = null; try { sw = sessionStorage.getItem('journal-switch'); } catch (e) {} if (sw) document.documentElement.classList.add('arriving'); else if (!matchMedia('(prefers-reduced-motion: reduce)').matches && (!location.hash || location.hash === '#home')) document.documentElement.classList.add('intro-on'); })();</script>
+<script>(function () { var sw = null; try { sw = sessionStorage.getItem('journal-switch'); } catch (e) {} if (sw) document.documentElement.classList.add('arriving'); else if (innerWidth > 700 && !matchMedia('(prefers-reduced-motion: reduce)').matches && (!location.hash || location.hash === '#home')) document.documentElement.classList.add('intro-on'); })();</script>
 <style>
   /* ============ tokens ============ */
   :root {
@@ -647,6 +647,28 @@
     .photo { width: 100%; }
     .photos { grid-template-columns: 1fr; }
     .entry-body { grid-template-columns: 1fr; gap: 4px; }
+  }
+  /* torn paper edges reach a little past the column; they must never make the page scroll sideways */
+  html, body { overflow-x: clip; }
+  @media (max-width: 700px) {
+    /* the margin is narrow on a phone, so the ship and the pin shrink to stay off the text */
+    .trail .ship { transform: scale(.6); }
+    .trail .pin { transform: scale(.85); }
+    .report-title { font-size: calc(36px * var(--title-size)); }
+    .letter { width: min(340px, 100%); }
+    .chapter-head .when { white-space: normal; }
+    .built { font-size: 15px; }
+    .built th { font-size: 16px; }
+    .built th, .built td { padding: 6px 8px 6px 0; overflow-wrap: anywhere; hyphens: auto; }
+    .built td:first-child { width: 74px; }
+    /* the fixed controls get smaller, and slide away while you read down the page */
+    .lang-switch { top: 8px; right: 8px; scale: .86; transform-origin: top right; }
+    .hand-tools { left: 10px; bottom: 10px; }
+    .hand-tools button { padding: 9px; }
+    #handLbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+    .lang-switch, .hand-tools { transition: opacity 300ms ease, translate 280ms var(--ease-out); }
+    html.tuck .lang-switch { translate: 0 -72px; }
+    html.tuck .hand-tools { translate: 0 80px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
@@ -1803,6 +1825,13 @@
   var queued = false;
   addEventListener('scroll', function () { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; frame(); }); }, { passive: true });
   addEventListener('resize', function () { tear(); buildTrail(); });
+  var lastY = scrollY;
+  addEventListener('scroll', function () {
+    var y = scrollY, d = y - lastY;
+    if (Math.abs(d) < 10) return;
+    root.classList.toggle('tuck', d > 0 && y > 160 && innerWidth <= 700);
+    lastY = y;
+  }, { passive: true });
   // late layout changes (fonts, images) move the chapters, so the trail follows
   if (window.ResizeObserver) { var roT = 0; new ResizeObserver(function () { clearTimeout(roT); roT = setTimeout(buildTrail, 120); }).observe(home); }
 

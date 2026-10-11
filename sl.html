@@ -152,7 +152,6 @@
   html.intro-on #home > .sheet-wrap ~ .sheet-wrap ~ .sheet-wrap ~ .sheet-wrap ~ .sheet-wrap { filter: none; visibility: hidden; }
   .trail:not(.ready) { visibility: hidden; }
   /* while the taped pages swing, each one gets its own layer so its shadow isn't redrawn every frame */
-  .page.swinging > .sheet-wrap { will-change: translate, rotate; }
   .intro-skip { position: fixed; left: 0; right: 0; bottom: 18px; z-index: 41; text-align: center; color: rgba(230, 210, 170, .55); font-style: italic; font-size: 15px; pointer-events: none; transition: opacity 400ms ease; }
 
   /* ============ title page ============ */
@@ -595,24 +594,7 @@
       radial-gradient(ellipse 9% 5% at var(--wx, 90%) var(--wy, 20%), rgba(120, 80, 30, .16), transparent 70%);
   }
   .sheet.coffee2 .paper::after { content: ""; position: absolute; left: 7%; bottom: 6%; width: 104px; height: 104px; border-radius: 50%; box-shadow: inset 0 0 0 3px rgba(120, 72, 30, .18), inset 0 0 0 10px rgba(120, 72, 30, .05); transform: rotate(-24deg) scale(1.05, .95); pointer-events: none; }
-  /* hand tool: pull a page and its taped neighbours come along; let go and gravity swings them back */
   html { overflow-x: clip; }
-  .sheet-wrap { transition: scale 180ms var(--ease-out); }
-  html.hand-on .page.on .sheet-wrap { cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
-  html.hand-on .page.on .sheet-wrap img { -webkit-user-drag: none; }
-  html.grabbing, html.grabbing * { cursor: grabbing !important; }
-  .sheet-wrap.held { scale: 1.025; will-change: translate, rotate; filter: drop-shadow(0 34px 30px rgba(0, 0, 0, .42)) drop-shadow(0 6px 6px rgba(0, 0, 0, .3)); }
-  .sheet-wrap.landing { transition: scale 420ms cubic-bezier(.3, 2.2, .55, 1); }
-  .hand-tools { position: fixed; left: 14px; bottom: 14px; z-index: 90; display: flex; gap: 8px; align-items: center; transition: opacity 300ms ease; }
-  html.intro-on .hand-tools { opacity: 0; pointer-events: none; }
-  .hand-tools button { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px 8px 11px; border: 1.5px solid rgba(43, 33, 24, .55); border-radius: 999px; background: var(--paper-2); color: var(--ink); box-shadow: 0 6px 14px rgba(0, 0, 0, .45); font-family: var(--f-hand); font-size: 19px; line-height: 1; cursor: pointer; transition: transform 160ms var(--ease-out), background 160ms ease, color 160ms ease; }
-  .hand-tools button:hover { transform: translateY(-2px) rotate(-1.5deg); }
-  .hand-tools button:active { transform: translateY(0) scale(.97); }
-  .hand-tools svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .hand-tools #handTool[aria-pressed="true"] { background: var(--red); border-color: var(--red); color: var(--paper-2); }
-  .hand-tools #handTool[aria-pressed="true"] svg { animation: wave 1.6s ease-in-out infinite; transform-origin: 50% 90%; }
-  @keyframes wave { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg); } 60% { transform: rotate(10deg); } }
-  @media (prefers-reduced-motion: reduce) { .hand-tools #handTool[aria-pressed="true"] svg { animation: none; } }
   /* switching language: the page fades out, and the other one fades in at the same place */
   html.leaving .journal, html.arriving .journal { opacity: 0; }
   html.leaving .journal { transition: opacity 180ms ease; }
@@ -663,12 +645,8 @@
     .built td:first-child { width: 74px; }
     /* the fixed controls get smaller, and slide away while you read down the page */
     .lang-switch { top: 8px; right: 8px; scale: .86; transform-origin: top right; }
-    .hand-tools { left: 10px; bottom: 10px; }
-    .hand-tools button { padding: 9px; }
-    #handLbl { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-    .lang-switch, .hand-tools { transition: opacity 300ms ease, translate 280ms var(--ease-out); }
+    .lang-switch { transition: opacity 300ms ease, translate 280ms var(--ease-out); }
     html.tuck .lang-switch { translate: 0 -72px; }
-    html.tuck .hand-tools { translate: 0 80px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
@@ -1508,9 +1486,6 @@
   <a href="sl.html" hreflang="sl" lang="sl" data-lang="sl">SL</a>
 </nav>
 
-<div class="hand-tools">
-  <button type="button" id="handTool" aria-pressed="false" title="Vleci strani naokoli, lepilni trak in težnost jih vrneta nazaj (H)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0"/><path d="M14 10V4a2 2 0 0 0-4 0v2"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg> <span id="handLbl">Premikaj strani</span></button>
-</div>
 
 
 <script>
@@ -1938,135 +1913,6 @@
   var swX = null;
   viewer.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') swX = e.clientX; });
   viewer.addEventListener('pointerup', function (e) { if (swX === null) return; var dx = e.clientX - swX; swX = null; if (Math.abs(dx) > 50) stepViewer(dx < 0 ? 1 : -1); });
-
-  // ---------- hand tool: the pages hang in a taped chain ----------
-  // Each page hangs from its top edge like a pendulum, and the tape at both corners joins it to the pages above
-  // and below. Pull a page and the tape drags its neighbours along; let go and gravity swings them all back.
-  (function () {
-    var btn = $('#handTool'), lbl = $('#handLbl'), on = false, dragDist = 0;
-    // per unit mass: gravity, the hanger at each page's top edge, the tape, the hand, and air drag
-    var G = 26000, KA = 42, CA = 1, KT = 14, CT = 1, KH = 1400, CH = 55, DV = 2, DW = 1.4;
-    var sim = null, hand = null, raf = 0, last = 0;
-    function build(page) {
-      var bodies = $$(':scope > .sheet-wrap', page).map(function (w) {
-        var r = w.getBoundingClientRect(), W = w.offsetWidth, H = w.offsetHeight;
-        return { w: w, W: W, H: H, I: (W * W + H * H) / 12, cx: r.left + r.width / 2 + scrollX, cy: r.top + r.height / 2 + scrollY,
-                 x: 0, y: 0, a: 0, vx: 0, vy: 0, va: 0, c: 1, s: 0, fx: 0, fy: 0, t: 0 };
-      });
-      var links = [];
-      for (var i = 0; i + 1 < bodies.length; i++) {
-        [-.4, .4].forEach(function (k) {
-          var A = bodies[i], B = bodies[i + 1], la = [k * A.W, A.H / 2], lb = [k * B.W, -B.H / 2];
-          links.push({ A: A, B: B, la: la, lb: lb });
-        });
-      }
-      page.classList.add('swinging');
-      return { page: page, bodies: bodies, links: links };
-    }
-    // a point given in the page's own frame, as an offset from its centre in the world
-    function rel(b, l) { return [b.c * l[0] - b.s * l[1], b.s * l[0] + b.c * l[1]]; }
-    function force(b, r, fx, fy) { b.fx += fx; b.fy += fy; b.t += r[0] * fy - r[1] * fx; }
-    function step(dt) {
-      sim.bodies.forEach(function (b) {
-        b.c = Math.cos(b.a); b.s = Math.sin(b.a);
-        b.fx = -DV * b.vx; b.fy = -DV * b.vy; b.t = -DW * b.va * b.I;
-        // the hanger holds the top edge in place and carries the weight, so the page swings like a pendulum
-        var r = rel(b, [0, -b.H / 2]), dx = b.x + r[0], dy = b.y + r[1] + b.H / 2;
-        force(b, r, -KA * dx - CA * (b.vx - b.va * r[1]), -KA * dy - CA * (b.vy + b.va * r[0]) - G);
-        b.fy += G;
-      });
-      sim.links.forEach(function (L) {
-        var A = L.A, B = L.B, ra = rel(A, L.la), rb = rel(B, L.lb);
-        var sx = B.x + rb[0] - L.lb[0] - A.x - ra[0] + L.la[0], sy = B.y + rb[1] - L.lb[1] - A.y - ra[1] + L.la[1];
-        var vx = (B.vx - B.va * rb[1]) - (A.vx - A.va * ra[1]), vy = (B.vy + B.va * rb[0]) - (A.vy + A.va * ra[0]);
-        var fx = -KT * sx - CT * vx, fy = -KT * sy - CT * vy;
-        force(B, rb, fx, fy); force(A, ra, -fx, -fy);
-      });
-      if (hand) {
-        var b = hand.b, r = rel(b, hand.l), gx = b.cx + b.x + r[0], gy = b.cy + b.y + r[1];
-        force(b, r, KH * (hand.x - gx) - CH * (b.vx - b.va * r[1] - hand.vx), KH * (hand.y - gy) - CH * (b.vy + b.va * r[0] - hand.vy));
-      }
-      sim.bodies.forEach(function (b) {
-        b.vx += b.fx * dt; b.vy += b.fy * dt; b.va += b.t / b.I * dt;
-        b.x += b.vx * dt; b.y += b.vy * dt; b.a += b.va * dt;
-      });
-    }
-    function settled() {
-      return !hand && sim.bodies.every(function (b) {
-        return Math.abs(b.x) < .3 && Math.abs(b.y) < .3 && Math.abs(b.a) < .0004 && Math.abs(b.vx) < 4 && Math.abs(b.vy) < 4 && Math.abs(b.va) < .004;
-      });
-    }
-    function rest() {
-      if (!sim) return;
-      sim.bodies.forEach(function (b) { b.w.style.translate = ''; b.w.style.rotate = ''; b.w.style.zIndex = ''; b.w.classList.remove('held'); });
-      sim.page.classList.remove('swinging');
-      sim = null; cancelAnimationFrame(raf); raf = 0;
-    }
-    function frame(now) {
-      var dt = Math.min(.033, Math.max(0, now - last) / 1000), n = Math.max(1, Math.ceil(dt * 480)), i;
-      last = now;
-      for (i = 0; i < n; i++) step(dt / n);
-      if (settled()) return rest();
-      sim.bodies.forEach(function (b) {
-        b.w.style.translate = b.x.toFixed(1) + 'px ' + b.y.toFixed(1) + 'px'; b.w.style.rotate = b.a.toFixed(4) + 'rad';
-      });
-      raf = requestAnimationFrame(frame);
-    }
-    function setOn(v) {
-      on = v; root.classList.toggle('hand-on', on);
-      btn.setAttribute('aria-pressed', String(on)); lbl.textContent = on ? tr('Done', 'Končano') : tr('Move the pages', 'Premikaj strani');
-    }
-    btn.addEventListener('click', function () { setOn(!on); });
-
-    document.addEventListener('pointerdown', function () { dragDist = 0; }, true);
-    journal.addEventListener('pointerdown', function (e) {
-      if (!on || !introDone || e.button > 0) return;
-      var w = e.target.closest('.page.on > .sheet-wrap');
-      if (!w) return;
-      e.preventDefault();
-      var page = w.parentNode;
-      if (sim && sim.page !== page) rest();
-      if (!sim) sim = build(page);
-      var b = sim.bodies.filter(function (q) { return q.w === w; })[0];
-      var hx = e.clientX + scrollX, hy = e.clientY + scrollY, dx = hx - (b.cx + b.x), dy = hy - (b.cy + b.y), c = Math.cos(b.a), s = Math.sin(b.a);
-      hand = { b: b, id: e.pointerId, l: [c * dx + s * dy, -s * dx + c * dy], x: hx, y: hy, vx: 0, vy: 0, t: performance.now(), sx: e.clientX, sy: e.clientY, ex: e.clientX, ey: e.clientY };
-      sim.bodies.forEach(function (q) { q.w.style.zIndex = q === b ? 3 : ''; });
-      w.classList.remove('landing'); w.classList.add('held'); root.classList.add('grabbing');
-      try { w.setPointerCapture(e.pointerId); } catch (err) {}
-      if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
-    });
-    function follow(cx, cy) {
-      var now = performance.now(), dt = Math.max(4, now - hand.t) / 1000, nx = cx + scrollX, ny = cy + scrollY;
-      hand.vx = hand.vx * .6 + (nx - hand.x) / dt * .4; hand.vy = hand.vy * .6 + (ny - hand.y) / dt * .4;
-      hand.x = nx; hand.y = ny; hand.t = now;
-    }
-    addEventListener('pointermove', function (e) {
-      if (!hand || e.pointerId !== hand.id) return;
-      hand.ex = e.clientX; hand.ey = e.clientY;
-      dragDist = Math.max(dragDist, Math.hypot(e.clientX - hand.sx, e.clientY - hand.sy));
-      follow(e.clientX, e.clientY);
-    });
-    // scrolling with the wheel while holding a page carries the page along
-    addEventListener('scroll', function () { if (hand) follow(hand.ex, hand.ey); }, { passive: true });
-    function release(e) {
-      if (!hand || e.pointerId !== hand.id) return;
-      var w = hand.b.w; hand = null; root.classList.remove('grabbing');
-      w.classList.remove('held'); w.classList.add('landing');
-      setTimeout(function () { w.classList.remove('landing'); }, 450);
-      if (reduce) rest();
-    }
-    addEventListener('pointerup', release);
-    addEventListener('pointercancel', release);
-    // a drag is not a click: links and photos only open when the page was not moved
-    document.addEventListener('click', function (e) { if (on && dragDist > 4 && journal.contains(e.target)) { e.preventDefault(); e.stopPropagation(); } }, true);
-    document.addEventListener('dragstart', function (e) { if (on) e.preventDefault(); });
-    addEventListener('keydown', function (e) {
-      if (!viewer.hidden || e.ctrlKey || e.metaKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
-      if (e.key === 'h' || e.key === 'H') setOn(!on);
-      else if (e.key === 'Escape' && on) setOn(false);
-    });
-    window.__chain = function () { return sim ? sim.bodies.map(function (b) { return [b.x, b.y, b.a]; }) : null; };
-  })();
 
   // ---------- X marks the spot: the route draws in, the X is painted, then the chest opens ----------
   (function () {

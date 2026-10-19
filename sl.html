@@ -324,6 +324,8 @@
   .hang b { font-family: var(--f-hand); font-weight: 400; font-size: 21px; line-height: 1; color: var(--blue); }
   .hang.sl b { color: var(--red); }
   .hang small { font-size: 11.5px; line-height: 1.1; color: var(--ink-2); }
+  .hang { transition: scale 160ms var(--ease-out), rotate 160ms var(--ease-out); }
+  .hang:hover, .hang:focus-visible { z-index: 1; scale: 1.1; rotate: calc(var(--r) * -1); }
   .hang:hover .tg, .hang:focus-visible .tg { background-color: #F0D9A6; }
   .hang:hover small, .hang:focus-visible small { color: var(--ink); text-decoration: underline; }
   .env { position: relative; display: flex; flex-direction: column; margin-top: 6px; padding: 9px 40px 10px 12px; transform: rotate(-1.5deg); background: var(--noise), #F4EAD2; box-shadow: 0 6px 10px rgba(0, 0, 0, .4); color: var(--ink); text-decoration: none; transition: transform 220ms var(--ease-out); }
@@ -1800,6 +1802,7 @@
     if (!line || reduce) return;
     var path = $('.twine path', line), raf = 0, last = 0, sy = scrollY, st = 0, sv = 0, wind = 0;
     var s = 0, ds = 0;   // how far the twine sags past its rest, and how fast
+    var held = false;    // the mouse is on the twine: the tags calm down so they're easy to click
     var tags = $$('.hang', line).map(function (el, i) {
       var len = parseFloat(el.style.getPropertyValue('--len')), x = parseFloat(el.style.getPropertyValue('--x')) / 100;
       // a longer string swings slower; every tag also gets its own twist and flutter so they never move as one
@@ -1808,15 +1811,16 @@
     });
     function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
     function loop(now) {
-      var dt = Math.min(.04, (now - last) / 1000), moving = false; last = now;
+      var dt = Math.min(.04, (now - last) / 1000), moving = false, calm = held ? Math.pow(.0004, dt) : 1; last = now;
       if (sv && now - st > 120) { tags.forEach(function (t) { t.v += sv * 22; t.wv -= sv * 40 * t.dir; }); ds += sv * 60; sv = 0; }   // the scrolling stopped: everything swings back
       wind *= Math.pow(.02, dt);
-      ds += (-140 * s - 7 * ds) * dt; s = Math.max(-4, Math.min(12, s + ds * dt));
+      ds += (-140 * s - 7 * ds) * dt; s = Math.max(-4, Math.min(12, s + ds * dt)); s *= calm; ds *= calm;
       path.setAttribute('d', 'M2,4 Q100,' + (18 + 2 * s).toFixed(2) + ' 198,4');
       tags.forEach(function (t) {
         var gust = wind * Math.sin(now / 1000 * t.f + t.ph);
         t.v += (-t.k * t.a - 2.6 * t.v + gust * 260) * dt; t.a = Math.max(-35, Math.min(35, t.a + t.v * dt));
         t.wv += (-90 * t.w - 3.4 * t.wv + gust * 520 * t.dir) * dt; t.w = Math.max(-70, Math.min(70, t.w + t.wv * dt));
+        t.a *= calm; t.v *= calm; t.w *= calm; t.wv *= calm;
         var dy = 4 * s * t.x * (1 - t.x);
         t.el.style.transform = 'translateY(' + dy.toFixed(2) + 'px) rotate(' + (t.r + t.a).toFixed(2) + 'deg) rotateY(' + t.w.toFixed(1) + 'deg)';
         if (Math.abs(t.a) > .05 || Math.abs(t.v) > .1 || Math.abs(t.w) > .1 || Math.abs(t.wv) > .2) moving = true;
@@ -1830,6 +1834,7 @@
     addEventListener('scroll', function () {
       if (!wide.matches || !home.classList.contains('on')) return;
       var now = performance.now(), dt = Math.max(16, now - st), nv = (scrollY - sy) / dt;
+      if (held) { sy = scrollY; st = now; sv = 0; return; }
       if (now - st > 120) sv = 0;
       // a change of scroll speed tugs the tags, the twine dips, and fast scrolling blows on them like wind
       tags.forEach(function (t) { t.v -= (nv - sv) * 22; t.wv += (nv - sv) * 40 * t.dir; });
@@ -1837,14 +1842,12 @@
       sy = scrollY; st = now; sv = nv;
       kick();
     }, { passive: true });
-    // brushing past a tag with the mouse sets it swinging
-    tags.forEach(function (t) {
-      t.el.addEventListener('pointermove', function (e) {
-        if (e.pointerType !== 'mouse' || !wide.matches) return;
-        t.v += e.movementX * 9; t.wv += e.movementX * 14;
-        kick();
-      });
-    });
+    // holding the mouse (or keyboard focus) on the twine stills it; letting go lets scrolling swing the tags again
+    function hold(v) { held = v; if (v) { wind = 0; sv = 0; kick(); } }
+    line.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hold(true); });
+    line.addEventListener('pointerleave', function () { hold(false); });
+    line.addEventListener('focusin', function () { hold(true); });
+    line.addEventListener('focusout', function () { hold(false); });
   })();
 
   // ---------- animations that loop only run while they can be seen ----------

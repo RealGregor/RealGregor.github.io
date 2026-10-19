@@ -143,7 +143,7 @@
   .bk-inside { transform: rotateY(180deg); background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, rgba(60, 35, 10, .38) 100%), var(--blots), var(--noise), #B8925E; box-shadow: inset -30px 0 40px rgba(0, 0, 0, .35); }
   /* a pasted label inside the cover, in your handwriting */
   .found { position: absolute; left: 14%; right: 16%; top: 30%; padding: 34px 40px 30px; transform: rotate(-2.5deg); background: repeating-linear-gradient(transparent 0 56px, rgba(44, 74, 114, .22) 56px 58px), var(--noise), #EFE3C4; box-shadow: 0 6px 14px rgba(0, 0, 0, .3); text-align: center; color: var(--ink); }
-  .found span { display: block; font-family: var(--f-head); font-style: italic; font-size: 34px; color: var(--ink-2); }
+  .found span { display: block; font-family: var(--f-hand); font-size: 36px; line-height: 1.1; color: var(--ink-2); transform: rotate(-1deg); }
   .found b { display: block; margin: 6px 0 2px; font-family: var(--f-hand); font-weight: 400; font-size: 96px; line-height: 1; color: var(--blue); transform: rotate(-2deg); }
   .found em { display: block; margin-top: 8px; font-family: var(--f-hand); font-style: normal; font-size: 58px; color: var(--blue); }
   #home.dropping > .sheet-wrap { transform-origin: 50% 0; will-change: transform; }
@@ -219,7 +219,7 @@
   /* ============ bookmark ribbons (area filter) ============ */
   /* ribbons sit behind the pages, so only their ends stick out past the right edge */
   .ribbons { position: absolute; top: 0; bottom: 0; right: 0; width: 0; z-index: -1; }
-  .ribbons-in { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 8px; }
+  .ribbons-in { position: sticky; top: var(--rail-top, 70px); display: flex; flex-direction: column; gap: 8px; }
   .ribbon { position: relative; display: flex; align-items: center; gap: 8px; width: 172px; margin-left: -22px; padding: 7px 26px 7px 44px; border: 0; color: #F4E9D0; font-family: var(--f-head); font-size: 16px; text-align: left; cursor: pointer; clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .25); transform: translateX(-12px); transition: transform 220ms var(--ease-out), filter 220ms var(--ease-out); background: linear-gradient(rgba(255, 255, 255, .08), rgba(0, 0, 0, .12)), var(--c); }
   .ribbon::after { content: ""; position: absolute; inset: 0; background: var(--noise); opacity: .6; pointer-events: none; }
   .ribbon[data-f="all"] { --c: var(--all); } .ribbon[data-f="SW"] { --c: var(--sw); } .ribbon[data-f="PLC"] { --c: var(--plc); } .ribbon[data-f="GxP"] { --c: var(--gxp); }
@@ -247,34 +247,11 @@
   .go { display: inline-block; margin-top: 8px; font-family: var(--f-head); font-style: italic; font-size: 20px; color: var(--blue); text-decoration: underline; text-decoration-style: wavy; text-decoration-thickness: 1px; text-underline-offset: 5px; }
   .go:hover { color: var(--red); }
   /* entry: what it does and my part on the left, the principles pencilled in on the right */
-  .entry-body { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 30px; align-items: start; }
-  .lbl { display: block; margin: 8px 0 -1px; color: var(--red); font-family: var(--f-hand); font-size: 24px; line-height: 1; transform: rotate(-1.5deg); transform-origin: left; }
-  .how { padding-top: 4px; }
-  .how ul { margin: 6px 0 0; padding: 0; list-style: none; }
-  .how li { position: relative; margin-bottom: 7px; padding-left: 18px; font-family: var(--f-head); font-style: italic; font-size: 16.5px; line-height: 1.3; color: var(--ink-2); }
-  .how li::before { content: ""; position: absolute; left: 0; top: .6em; width: 10px; height: 2px; border-radius: 2px; background: var(--red); transform: rotate(-12deg); }
-  .how .sketch { float: none; width: 170px; margin: 14px 0 0; }
   /* the one-line summary a reviewer should take from each entry */
   .mini { margin-left: 4px; font-family: var(--f-hand); font-size: 17px; color: var(--red); }
-  .gist { max-width: 60ch; margin: 0 0 8px; padding-left: 12px; border-left: 2.5px solid var(--red); font-family: var(--f-head); font-style: italic; font-size: 20px; line-height: 1.35; color: var(--ink); }
   .go.small { margin-top: 0; font-size: 17px; }
   /* what I bring: a kit list grouped by kind */
-  .kit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 40px; }
-  .kit-group h3 { margin: 10px 0 4px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 30px; color: var(--red); }
-  .kit-group ul { margin: 0; padding: 0; list-style: none; }
-  .kit-group li { position: relative; padding: 5px 0 5px 20px; border-bottom: 1px dashed rgba(43, 33, 24, .22); font-size: 17px; line-height: 1.35; }
-  .kit-group li::before { content: ""; position: absolute; left: 2px; top: .85em; width: 10px; height: 2px; background: var(--ink-2); transform: rotate(-12deg); }
-  .kit-group li i { margin-left: 6px; font-family: 'IM Fell English SC', serif; font-style: normal; font-size: 15px; letter-spacing: .04em; color: var(--blue); white-space: nowrap; }
   /* languages and frameworks: one row per language, its frameworks, how long, and where in the journal */
-  .kit-tools { margin: 4px 0 18px; }
-  .kit-tools h3 { margin: 6px 0 6px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 30px; color: var(--red); }
-  .kit-tools .tool { display: grid; grid-template-columns: 130px minmax(0, 1fr) 72px 92px; gap: 14px; align-items: baseline; padding: 7px 0; border-bottom: 1px dashed rgba(43, 33, 24, .22); font-size: 17px; line-height: 1.4; }
-  .kit-tools b { font-weight: 600; }
-  .kit-tools em { font-family: var(--f-hand); font-style: normal; font-size: 21px; color: var(--ink-2); white-space: nowrap; }
-  .kit-tools i { font-family: 'IM Fell English SC', serif; font-style: normal; font-size: 15px; letter-spacing: .04em; color: var(--blue); text-align: right; white-space: nowrap; }
-  html[data-read="easy"] .kit-tools h3 { font-size: 22px; }
-  html[data-read="easy"] .kit-tools em { font-size: 16px; }
-  @media (max-width: 700px) { .kit-tools .tool { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; } .kit-tools .tool span { grid-column: 1 / -1; grid-row: 2; } .kit-tools .tool i { display: none; } }
   /* skills: four ink dots for the level (legend on the page), then the years */
   .lv { display: inline-flex; gap: 4px; flex: none; }
   .lv i { width: 10px; height: 10px; border: 1.6px solid rgba(43, 33, 24, .55); border-radius: 50%; }
@@ -297,18 +274,8 @@
   .gl-y small { font-family: var(--f-body); font-size: 13.5px; }
   .gl-spoken { margin: 12px 0 0; font-size: 16.5px; }
   .glance .lv-legend { margin-top: 12px; }
-  .gl-more { margin: 4px 0 0; color: var(--pencil); font-size: 22px; }
-  .skills { columns: 2; column-gap: 46px; }
-  .area { break-inside: avoid; margin-bottom: 18px; }
-  .area h3 { margin: 6px 0 4px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--red); }
-  .sk { display: grid; grid-template-columns: minmax(0, 1fr) auto 62px; gap: 10px; align-items: center; padding: 5px 0; border-bottom: 1px dashed rgba(43, 33, 24, .2); font-size: 15.5px; line-height: 1.3; }
-  .sk b { font-weight: 600; }
-  .sk small { color: var(--ink-2); font-size: 13.5px; }
-  .sk-y { font-family: var(--f-hand); font-size: 17px; text-align: right; color: var(--ink-2); white-space: nowrap; }
-  .sk-spoken { margin: 0; font-size: 15.5px; }
-  html[data-read="classic"] .gl-y, html[data-read="classic"] .sk-y { font-size: 24px; }
+  html[data-read="classic"] .gl-y { font-size: 24px; }
   html[data-read="classic"] .glance-head h2 { font-size: 44px; }
-  html[data-read="classic"] .area h3 { font-size: 32px; }
   @media (max-width: 860px) { .skills { columns: 1; } }
   @media (max-width: 700px) {
     .gl-row { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
@@ -318,15 +285,10 @@
   }
   /* working with me: a motto in my own hand, then short notes with one true example each */
   .motto { max-width: 34ch; margin: 6px 0 22px; padding: 0; transform: rotate(-1.2deg); color: var(--red); font-size: 30px; line-height: 1.25; }
-  .human-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 40px; }
-  .hnote h3 { margin: 10px 0 2px; font-family: var(--f-body); font-weight: 600; font-size: 19px; }
-  .hnote p { margin: 0; color: var(--ink); font-size: 16.5px; line-height: 1.5; }
-  .quote-slot { margin: 22px 0 0; padding: 18px; border: 2px dashed rgba(43, 33, 24, .3); text-align: center; }
-  .quote-slot .hand { color: var(--pencil); font-size: 22px; }
   html[data-read="classic"] .motto { font-size: 40px; }
-  @media (max-width: 700px) { .human-grid { grid-template-columns: 1fr; } .motto { font-size: 25px; } }
-  /* field reports: an index card pinned under the ribbons, for readers who only want the highlights */
-  .quick { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 2px; width: 190px; margin: 18px 0 0 -6px; padding: 18px 14px 20px 18px; transform: rotate(var(--qa, 1.2deg)); transform-origin: 50% 12px; will-change: transform; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .45)); }
+  @media (max-width: 700px) { .motto { font-size: 25px; } }
+  /* projects: an index card pinned under the ribbons, for readers who only want the highlights */
+  .quick { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 2px; width: clamp(190px, calc(50vw - 454px), 232px); margin: 18px 0 0 -6px; padding: 18px 14px 20px 18px; transform: rotate(var(--qa, 1.2deg)); transform-origin: 50% 12px; will-change: transform; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .45)); }
   /* the paper: yellowed, foxed, a coffee ring, a faded crease, ruled lines and a torn bottom edge */
   .quick::after {
     content: ""; position: absolute; inset: 0; z-index: -1;
@@ -349,22 +311,43 @@
   .quick a b { font-family: var(--f-body); font-weight: 600; font-size: 14.5px; }
   .quick a small { display: block; color: var(--ink-2); font-size: 12.5px; }
   .quick a:hover b, .quick a:focus-visible b { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
-  /* What I bring: one row per level, the dots and level on the left, the skills as a list, the year on the right */
-  /* What I bring: two columns, each row a small line with the level and year, then the skills across the full column */
-  .kit .skills { columns: 2; column-gap: 44px; }
-  .kit .area { margin-bottom: 14px; }
-  .lvrow { padding: 6px 0 7px; border-bottom: 1px dashed rgba(43, 33, 24, .2); font-size: 15.5px; line-height: 1.4; break-inside: avoid; }
-  .lvrow .lvw { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
-  .lvrow .lvw em { font-family: var(--f-hand); font-style: normal; font-size: 15px; color: var(--ink-2); }
-  .lvrow .sk-y { margin-left: auto; font-size: 15px; }
-  .lvrow .lvl-list { display: block; color: var(--ink); }
+  /* the CVs: four luggage tags on a twine under the card, and a small envelope for the e-mail */
+  .post { display: flex; flex-direction: column; width: 190px; margin: 14px 0 0 -2px; }
+  .post > .hand { color: #E9D7AE; font-size: 22px; line-height: 1.1; transform: rotate(-2deg); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+  .post .line { position: relative; height: 82px; perspective: 420px; }
+  .twine { position: absolute; left: 0; top: 0; width: 100%; height: 24px; overflow: visible; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .45)); }
+  .twine path { fill: none; stroke: #C9A66B; stroke-width: 2; stroke-dasharray: 3 1.2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .hang { position: absolute; left: calc(var(--x) - 20px); top: calc(var(--y) + var(--len)); width: 40px; height: 50px; color: var(--ink); text-decoration: none; transform: rotate(var(--r)); transform-origin: 50% calc(-1 * var(--len)); will-change: transform; filter: drop-shadow(0 4px 3px rgba(0, 0, 0, .45)); }
+  .hang::before { content: ""; position: absolute; left: 50%; top: calc(-1 * var(--len)); width: 1.5px; height: calc(var(--len) + 8px); margin-left: -.75px; background: #C9A66B; }
+  .hang .tg { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 6px; clip-path: polygon(30% 0, 70% 0, 100% 18%, 100% 100%, 0 100%, 0 18%); background: radial-gradient(circle at 50% 8px, transparent 0 2.5px, rgba(80, 55, 20, .6) 3px 4.5px, transparent 5px), var(--noise), #E3C58C; transition: background-color 160ms ease; }
+  .hang.sl .tg { background: radial-gradient(circle at 50% 8px, transparent 0 2.5px, rgba(80, 55, 20, .6) 3px 4.5px, transparent 5px), var(--noise), #D9B98F; }
+  .hang b { font-family: var(--f-hand); font-weight: 400; font-size: 21px; line-height: 1; color: var(--blue); }
+  .hang.sl b { color: var(--red); }
+  .hang small { font-size: 11.5px; line-height: 1.1; color: var(--ink-2); }
+  .hang:hover .tg, .hang:focus-visible .tg { background-color: #F0D9A6; }
+  .hang:hover small, .hang:focus-visible small { color: var(--ink); text-decoration: underline; }
+  .env { position: relative; display: flex; flex-direction: column; margin-top: 6px; padding: 9px 40px 10px 12px; transform: rotate(-1.5deg); background: var(--noise), #F4EAD2; box-shadow: 0 6px 10px rgba(0, 0, 0, .4); color: var(--ink); text-decoration: none; transition: transform 220ms var(--ease-out); }
+  /* a stamp in the corner, with a wavy postmark running off it */
+  .env::before { content: ""; position: absolute; top: 7px; right: 8px; width: 20px; height: 24px; background: linear-gradient(160deg, #B3473A, #6E1F1A); border: 2px dotted #F4EAD2; outline: 1px solid rgba(110, 31, 26, .45); transform: rotate(4deg); }
+  .env::after { content: ""; position: absolute; top: 12px; right: 22px; width: 30px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(43, 33, 24, .35); transform: rotate(-12deg); }
+  .env:hover, .env:focus-visible { transform: rotate(0) translateY(-2px); }
+  .env .hand { color: var(--red); font-size: 21px; line-height: 1.05; }
+  .env .addr { margin-top: 2px; font-size: 12.5px; letter-spacing: .01em; border-bottom: 1px solid currentColor; align-self: flex-start; }
+  .post { position: relative; }
+  .post .copy { position: absolute; right: 2px; bottom: -22px; padding: 0 4px; border: 0; color: #D8C59E; font-size: 16px; text-decoration: underline dashed; text-underline-offset: 3px; transform: rotate(-1deg); }
+  .post .copy:hover { color: #F4E9D0; }
+  /* What I bring: two columns, one short line per area, then working with me */
+  .kit-short { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 40px; }
+  .ks h3 { margin: 6px 0 0; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--red); }
+  .ks p { margin: 0; padding-bottom: 8px; border-bottom: 1px dashed rgba(43, 33, 24, .2); font-size: 16.5px; line-height: 1.4; }
+  .with-me { margin-top: 34px; }
+  .with-me h3 { margin: 0 0 6px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 30px; color: var(--red); }
+  .with-me .motto { max-width: none; margin-bottom: 14px; color: var(--ink-2); font-size: 24px; }
+  .traits { margin: 0; padding: 0; list-style: none; }
+  .traits li { margin-bottom: 6px; }
+  .traits b { font-weight: 600; }
+  @media (max-width: 700px) { .kit-short { grid-template-columns: 1fr; } }
   @media (max-width: 860px) { .kit .skills { columns: 1; } }
-  /* field notes on fieldbuses: a squared notebook page */
-  .sheet.notes .paper { background: linear-gradient(rgba(44, 74, 114, .08) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(90deg, rgba(44, 74, 114, .08) 1px, transparent 1px) 0 0 / 28px 28px, radial-gradient(ellipse 115% 95% at 50% 50%, transparent 58%, var(--edge) 100%), var(--noise), var(--paper-2); }
-  .proto { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px dashed rgba(43, 33, 24, .25); }
-  .proto .pname { transform: rotate(-2deg); font-family: var(--f-hand); font-size: 30px; line-height: 1; color: var(--blue); }
-  .proto p { margin: 0; max-width: 64ch; }
-  .proto .circled { font-size: 24px; margin-left: 4px; }
   /* treasure maps of how each system fits together */
   .map { margin: 10px 0 6px; }
   .map svg { display: block; width: 100%; height: auto; }
@@ -388,13 +371,10 @@
   .photo.tall img { aspect-ratio: 9 / 16; }
   .photo.slot .img { background: repeating-linear-gradient(45deg, rgba(43, 33, 24, .06) 0 6px, transparent 6px 12px), #EFE6D2; filter: none; outline: 2px dashed rgba(43, 33, 24, .3); outline-offset: -8px; }
   .viewer .big img { display: block; max-width: 100%; max-height: calc(100vh - 120px); margin: 0 auto; }
-  @media (max-width: 700px) { .kit-grid { grid-template-columns: 1fr; } .proto { grid-template-columns: 1fr; gap: 4px; } .photo.tall { width: 46%; } }
+  @media (max-width: 700px) { .photo.tall { width: 46%; } }
   .journal.filtered .entry:not(.match) { opacity: .28; filter: grayscale(1) blur(.4px); }
 
   /* a pencil sketch beside the recipe editor entry */
-  .sketch { float: right; width: 190px; margin: 6px 0 8px 22px; transform: rotate(2deg); color: var(--pencil); }
-  .sketch svg { width: 100%; height: auto; filter: url(#rough); }
-  .sketch figcaption { margin-top: -4px; text-align: center; font-family: var(--f-hand); font-size: 23px; }
 
   /* the scrap note pinned across a page: the switch to agents */
   .scrap { position: relative; max-width: 470px; margin: 30px auto 30px; padding: 22px 26px 20px; transform: rotate(-2.2deg); background: var(--noise), #F5ECD3; box-shadow: 0 6px 12px rgba(0, 0, 0, .25); clip-path: polygon(0 4%, 7% 0, 18% 3%, 31% 0, 46% 2%, 60% 0, 74% 3%, 88% 0, 100% 2%, 99% 30%, 100% 62%, 98% 100%, 82% 97%, 66% 100%, 50% 96%, 34% 100%, 18% 97%, 4% 100%, 1% 70%, 0 40%); }
@@ -452,21 +432,8 @@
   .treasure.open .sparks path:nth-child(2) { animation-delay: .4s; } .treasure.open .sparks path:nth-child(3) { animation-delay: .8s; } .treasure.open .sparks path:nth-child(4) { animation-delay: 1.2s; }
   @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
   .loot { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 4px; }
-  .letter-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 18px; }
-  .letter { position: relative; display: flex; flex-direction: column; align-items: center; width: min(340px, 86vw); padding: 104px 20px 20px; transform: rotate(-1.5deg); background: linear-gradient(to bottom right, transparent 49.6%, rgba(43, 33, 24, .2) 50%, transparent 50.6%) top left / 50% 72px no-repeat, linear-gradient(to bottom left, transparent 49.6%, rgba(43, 33, 24, .2) 50%, transparent 50.6%) top right / 50% 72px no-repeat, var(--noise), #f4ead2; border: 1px solid rgba(43, 33, 24, .3); box-shadow: 0 10px 18px rgba(0, 0, 0, .28); color: var(--ink); text-decoration: none; transition: transform 220ms var(--ease-out), box-shadow 220ms ease; }
-  .letter:hover { transform: rotate(0) translateY(-4px); box-shadow: 0 16px 26px rgba(0, 0, 0, .3); }
-  .letter .wax { position: absolute; top: 46px; left: 50%; width: 48px; height: 48px; margin-left: -24px; border-radius: 47% 53% 50% 50% / 52% 46% 54% 48%; background: radial-gradient(circle at 36% 30%, #d95a47, #a52a1f 45%, #5a110b); box-shadow: 0 3px 5px rgba(0, 0, 0, .35), inset 0 0 0 5px rgba(60, 8, 4, .35); color: rgba(60, 8, 4, .85); font-family: var(--f-title); font-size: 24px; line-height: 48px; text-shadow: 0 1px 0 rgba(255, 170, 150, .4); }
-  .letter .hand { margin-top: 0; color: var(--red); font-size: 26px; line-height: 1; }
-  .letter .addr { margin-top: 6px; font-family: var(--f-head); font-size: 20px; border-bottom: 1.5px solid currentColor; }
   .copy { padding: 4px 10px; border: 1.5px dashed rgba(43, 33, 24, .45); border-radius: 4px; background: none; color: var(--ink-2); font-size: 18px; cursor: pointer; transform: rotate(2deg); }
   .copy:hover { color: var(--red); border-color: var(--red); }
-  .loot-note { margin: 18px 0 0; color: var(--pencil); font-size: 22px; transform: rotate(-1.5deg); }
-  .cv-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 14px; }
-  .cvtag { position: relative; display: flex; flex-direction: column; justify-content: center; width: 150px; min-height: 76px; padding: 10px 10px 10px 32px; clip-path: polygon(16px 0, 100% 0, 100% 100%, 16px 100%, 0 calc(100% - 16px), 0 16px); background: radial-gradient(circle at 17px 50%, var(--paper) 0 5px, rgba(80, 55, 20, .55) 5.5px 6.5px, transparent 7px), var(--noise), #e3c58c; color: var(--ink); text-align: left; text-decoration: none; transform: rotate(var(--r, -2deg)); transform-origin: 17px 50%; transition: transform 260ms cubic-bezier(.3, 1.6, .5, 1); }
-  .cvtag:nth-child(2) { --r: 1.5deg; } .cvtag:nth-child(3) { --r: -1deg; } .cvtag:nth-child(4) { --r: 2.5deg; }
-  .cvtag:hover { transform: rotate(calc(var(--r, -2deg) - 6deg)); }
-  .cvtag b { font-family: var(--f-head); font-weight: 600; font-size: 17px; line-height: 1.2; }
-  .cvtag small { color: var(--ink-2); font-size: 13.5px; }
   .coins-row { display: flex; gap: 22px; margin-top: 14px; }
   .coin { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #fff1b8, #e3b53e 38%, #a77a14 75%, #6e4f0a); box-shadow: inset 0 0 0 4px rgba(110, 79, 10, .55), inset 0 0 0 7px rgba(255, 235, 160, .35), 0 6px 10px rgba(0, 0, 0, .35); color: #4b3506; font-family: var(--f-title); font-size: 15px; text-decoration: none; text-shadow: 0 1px 0 rgba(255, 240, 190, .6); transition: transform 240ms cubic-bezier(.3, 1.6, .5, 1); }
   .coin:hover { transform: translateY(-4px) rotate(-10deg); }
@@ -544,32 +511,23 @@
   html[data-read="easy"] body { font-size: 18px; line-height: 1.68; }
   html[data-read="easy"] .entry h3 { font-family: var(--f-body); font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -.005em; }
   html[data-read="easy"] .entry h3 time { font-size: 18px; font-weight: 400; }
-  html[data-read="easy"] .gist { font-family: var(--f-body); font-size: 18px; line-height: 1.5; }
-  html[data-read="easy"] .how li { font-family: var(--f-body); font-style: normal; font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
   html[data-read="easy"] .chapter-intro, html[data-read="easy"] .report-sum, html[data-read="easy"] .role { font-family: var(--f-body); }
   html[data-read="easy"] .chapter-intro { font-size: 17px; }
   html[data-read="easy"] .report-sum { font-size: 19.5px; }
   html[data-read="easy"] .role { font-size: 22px; }
   html[data-read="easy"] .report h3 { font-family: var(--f-body); font-weight: 600; font-size: 24px; }
-  html[data-read="easy"] .kit-group li { font-size: 16px; }
-  html[data-read="easy"] .proto p { font-size: 17px; }
   /* Kalam runs larger than Reenie Beanie, so the handwritten sizes come down */
-  html[data-read="easy"] .lbl { font-size: 17px; }
   html[data-read="easy"] .label { font-size: 26px; }
   html[data-read="easy"] .chapter-head .when { font-size: 22px; }
   html[data-read="easy"] .circled { font-size: 19px; padding: 3px 12px 1px; }
-  html[data-read="easy"] .proto .circled { font-size: 17px; }
   html[data-read="easy"] .back { font-size: 21px; }
   html[data-read="easy"] .report-kind { font-size: 22px; }
   html[data-read="easy"] .where { font-size: 20px; }
   html[data-read="easy"] .scrap .hand { font-size: 21px; line-height: 1.35; }
   html[data-read="easy"] .sticky .hand { font-size: 21px; }
-  html[data-read="easy"] .kit-group h3 { font-size: 22px; }
-  html[data-read="easy"] .proto .pname { font-size: 21px; }
   html[data-read="easy"] .photo .cap { font-size: 15px; }
   html[data-read="easy"] .viewer .big .cap { font-size: 20px; }
   html[data-read="easy"] .x-page h2 { font-size: 46px; }
-  html[data-read="easy"] .sketch figcaption { font-size: 15px; }
   html[data-read="easy"] .map .il { font-size: 19px; }
   html[data-read="easy"] .map .rl { font-size: 15px; }
   html[data-read="easy"] .map .rl.small { font-size: 13px; }
@@ -579,7 +537,6 @@
   html[data-read="easy"] .report-meta .hand { font-size: 20px !important; }
   /* sharp text: pages lie straight, so text is never drawn at an angle */
   html[data-read="easy"] .sheet { transform: none; }
-  html[data-read="easy"] .how li { color: var(--ink); }
   /* spicier wear: burnt edges, a crease pair and margin ink spatters on every page, placed per page by script */
   html[data-theme="explorer"] { --edge: rgba(105, 62, 18, .42); }
   .paper::before {
@@ -613,6 +570,12 @@
     .ribbons-in { position: static; flex-direction: row; flex-wrap: wrap; gap: 6px; margin: 26px 0 0; }
     .quick { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 18px; width: 100%; margin: 12px 0 0; transform: none !important; }
     .quick .hand { width: 100%; }
+    .post { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 4px 22px; width: 100%; margin: 14px 0 0; }
+    .post > .hand { width: 100%; }
+    .post .line { width: 190px; }
+    .hang { transform: rotate(var(--r)) !important; }
+    .env { margin-top: 10px; }
+    .post .copy { position: static; align-self: flex-end; }
     .ribbon { width: auto; margin: 0; padding: 6px 22px 6px 12px; transform: none; clip-path: polygon(0 0, 100% 0, 92% 50%, 100% 100%, 0 100%); }
     .ribbon[aria-pressed="true"], .ribbon[aria-pressed="true"]:hover { transform: translateY(-4px); }
     .ribbon:hover { transform: translateY(-1px); }
@@ -622,13 +585,11 @@
     .sheet { padding: 48px 22px 54px 52px; }
     .trail { width: 50px; }
     .where, .compass, .note { display: none; }
-    .sketch { float: none; width: 170px; margin: 6px auto 4px; }
     .sticky { float: none; width: auto; margin: 0 0 20px; }
     .chapter-head { flex-direction: column; align-items: flex-start; gap: 4px; }
     .entry h3 { flex-direction: column; gap: 0; }
     .photo { width: 100%; }
     .photos { grid-template-columns: 1fr; }
-    .entry-body { grid-template-columns: 1fr; gap: 4px; }
   }
   /* torn paper edges reach a little past the column; they must never make the page scroll sideways */
   html, body { overflow-x: clip; }
@@ -637,7 +598,6 @@
     .trail .ship { transform: scale(.6); }
     .trail .pin { transform: scale(.85); }
     .report-title { font-size: calc(36px * var(--title-size)); }
-    .letter { width: min(340px, 100%); }
     .chapter-head .when { white-space: normal; }
     .built { font-size: 15px; }
     .built th { font-size: 16px; }
@@ -653,6 +613,8 @@
 
   }
 </style>
+<!-- visitor stats: GoatCounter, without cookies. It skips localhost, so the local preview never counts -->
+<script data-goatcounter="https://realgregor.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -714,13 +676,27 @@
         <button type="button" class="ribbon" data-f="SW" aria-pressed="false">Software<span class="n"></span></button>
         <button type="button" class="ribbon" data-f="PLC" aria-pressed="false">Automation<span class="n"></span></button>
         <button type="button" class="ribbon" data-f="GxP" aria-pressed="false">Pharma<span class="n"></span></button>
-        <nav class="quick" aria-label="Field reports">
-          <span class="hand">Field reports</span>
-          <a href="#case3"><b>Lab robot</b><small>software, PLC, vision</small></a>
-          <a href="#case"><b>Batch recipe platform</b><small>the editor, then the rewrite</small></a>
-          <a href="#case2"><b>Time-tracking SaaS</b><small>my own product</small></a>
-          <a href="#case4"><b>Booking widget</b><small>with a team</small></a>
+        <nav class="quick" aria-label="Projects I've been part of">
+          <span class="hand">Projects I've been part of</span>
+          <a href="#case3"><b>Lab robot</b><small>TypeScript, C#, PLC, Python</small></a>
+          <a href="#case"><b>Batch recipe platform</b><small>C#, WPF, ASP.NET, SQL Server</small></a>
+          <a href="#case5"><b>WebSCADA, now EVA</b><small>C#, .NET, SignalR, Nuxt, Konva</small></a>
+          <a href="#case2"><b>Time-tracking SaaS</b><small>C#, .NET 10, Nuxt, PostgreSQL</small></a>
+          <a href="#case4"><b>Booking widget</b><small>JavaScript, web components</small></a>
         </nav>
+        <!-- the CVs hang from a twine and swing as the journal scrolls; the letter sits under them -->
+        <div class="post">
+          <span class="hand">Take my CV</span>
+          <div class="line">
+            <svg class="twine" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M2,4 Q100,18 198,4"/></svg>
+            <a class="hang" style="--x:12.5%;--y:7px;--len:8px;--r:-3deg" href="cv/Gregor-Bucar-CV-short-EN.pdf" download data-goatcounter-click="cv-en-short" title="English CV, 2 pages"><span class="tg"><b>EN</b><small>short</small></span></a>
+            <a class="hang" style="--x:37.5%;--y:10.5px;--len:16px;--r:2deg" href="cv/Gregor-Bucar-CV-long-EN.pdf" download data-goatcounter-click="cv-en-long" title="English CV, every project"><span class="tg"><b>EN</b><small>long</small></span></a>
+            <a class="hang sl" style="--x:62.5%;--y:10.5px;--len:10px;--r:-1.5deg" href="cv/Gregor-Bucar-CV-short-SL.pdf" download data-goatcounter-click="cv-sl-short" title="Slovenian CV, short"><span class="tg"><b>SL</b><small>short</small></span></a>
+            <a class="hang sl" style="--x:87.5%;--y:7px;--len:20px;--r:3deg" href="cv/Gregor-Bucar-CV-long-SL.pdf" download data-goatcounter-click="cv-sl-long" title="Slovenian CV, long"><span class="tg"><b>SL</b><small>long</small></span></a>
+          </div>
+          <a class="env" id="mail" href="mailto:gregor.bucar@gmail.com" data-goatcounter-click="email"><span class="hand">Write to me</span><span class="addr">gregor.bucar@gmail.com</span></a>
+          <button class="copy hand" type="button" id="copyMail" data-copy="gregor.bucar@gmail.com">copy the address</button>
+        </div>
       </div>
     </div>
     <p class="vh" id="filterLive" aria-live="polite"></p>
@@ -734,22 +710,16 @@
         <!-- glance:start -->
         <div class="glance">
           <div class="glance-head"><h2>At a glance</h2><span class="hand">how well, and for how long</span><svg class="compass" viewBox="-50 -50 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2" style="filter:url(#rough)"><circle r="44"/><circle r="38" stroke-dasharray="2 3"/><path d="M0,-46 L5,0 L0,46 L-5,0 Z M-46,0 L0,5 L46,0 L0,-5 Z" fill="currentColor" fill-opacity=".15"/><path d="M-30,-30 L3,-3 M30,30 L-3,3 M30,-30 L3,-3 M-30,30 L-3,3"/></g><text y="-30" text-anchor="middle" font-family="IM Fell English SC" font-size="11" fill="currentColor">N</text></svg></div>
-          <div class="gl-row"><span class="gl-n"><b>C# and .NET</b><small>WPF, WinUI 3, ASP.NET Core, EF Core, SignalR</small></span><span class="gl-lv"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em></span><span class="gl-y">since 2018<small>8 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Desktop apps with MVVM</b><small>a process database application with a recipe editor, used at hundreds of plants</small></span><span class="gl-lv"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em></span><span class="gl-y">since 2020<small>6 years</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>C# and .NET</b><small>WPF with MVVM, ASP.NET Core, EF Core, SignalR</small></span><span class="gl-lv"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em></span><span class="gl-y">since 2018<small>8 years</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>TypeScript, Vue and Nuxt</b><small>Node.js services and operator web apps</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>Testing and deployment</b><small>xUnit, Vitest, tests against a real PLC, Docker, GitHub Actions</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>AI and vision</b><small>YOLO models, OpenCV, building with coding agents</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2023<small>3 years</small></span></div>
           <div class="gl-row"><span class="gl-n"><b>PLC programming</b><small>object-oriented Structured Text in CODESYS, SCL in TIA Portal</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2024<small>2 years</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>OPC UA and fieldbuses</b><small>PROFINET, Modbus, EtherNet/IP, RS-232 and RS-485</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
           <div class="gl-row"><span class="gl-n"><b>ISA-88 batch control</b><small>PLC phases and the recipe software above them</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2020<small>6 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>OPC UA and fieldbuses</b><small>PROFINET, Modbus RTU and TCP, RS-232, RS-485, EtherNet/IP</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
           <div class="gl-row"><span class="gl-n"><b>GxP validation</b><small>URS, FS, SDS, OQ, installation qualification, audit trails</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>TypeScript and Node.js</b><small>Fastify services between the PLC and the browser</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Vue and Nuxt</b><small>operator apps and planning tools, with Tailwind</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2023<small>3 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Automated testing</b><small>xUnit, Vitest, hardware-in-the-loop against a real PLC</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2022<small>4 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Deployment and hosting</b><small>Docker, GitHub Actions, Cloudflare, Linux and Windows services</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2024<small>2 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Computer vision</b><small>training YOLO models, OpenCV, Python</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2023<small>3 years</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Home automation</b><small>Home Assistant APIs, a custom integration, voice, WLED</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">2026<small>this year</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Building with coding agents</b><small>Claude Code, with a spec and a plan first, tests and my review</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em></span><span class="gl-y">since 2025<small>1 year</small></span></div>
           <p class="gl-spoken"><b>Languages</b> Slovenian (native), English (C2), <span style="white-space:nowrap">French (A2 to B1)</span></p>
           <div class="lv-legend"><span><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Expert</b> built and shipped production systems with it, over years</span><span><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><b>Advanced</b> shipped production work with it on my own</span><span><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><b>Working</b> used it in real projects, with the docs at hand</span><span><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><b>Basics</b> set it up or used it a few times</span></div>
-          <p class="gl-more hand">Every skill, area by area, is on the next page.</p>
         </div>
         <!-- glance:end -->
         <div class="legend">
@@ -759,99 +729,30 @@
       </section>
     </div>
 
-    <!-- what I bring -->
+    <!-- what I bring, and working with me -->
     <div class="sheet-wrap">
       <span class="tape tl"></span><span class="tape tr"></span>
       <section class="sheet light kit" style="--tilt:.25deg">
         <header class="chapter-head"><h2><span class="num">Before the chapters</span>What I bring</h2><span class="when">the short version</span></header>
         <!-- kit:start -->
-        <div class="lv-legend"><span><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Expert</b> built and shipped production systems with it, over years</span><span><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><b>Advanced</b> shipped production work with it on my own</span><span><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><b>Working</b> used it in real projects, with the docs at hand</span><span><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><b>Basics</b> set it up or used it a few times</span></div>
-        <div class="skills">
-          <div class="area"><h3>Languages</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em><span class="sk-y">since 2018</span></span><span class="lvl-list">C#</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2022</span></span><span class="lvl-list">TypeScript and JavaScript, Structured Text, SCL</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2022</span></span><span class="lvl-list">Python, SQL</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y">since 2025</span></span><span class="lvl-list">C++ for ESP32</span></div>
-          </div>
-          <div class="area"><h3>.NET</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em><span class="sk-y">since 2020</span></span><span class="lvl-list">WPF with MVVM and custom controls</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2022</span></span><span class="lvl-list">WinUI 3, ASP.NET Core, Entity Framework Core, SignalR, hosted and Windows services, Stateless, upgrades to .NET 8 and 10</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2018</span></span><span class="lvl-list">.NET MAUI, Blazor WebAssembly, WinForms, MediatR, FluentValidation</span></div>
-          </div>
-          <div class="area"><h3>Web and apps</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em><span class="sk-y">since 2020</span></span><span class="lvl-list">Diagram and canvas editors</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2023</span></span><span class="lvl-list">Vue 3, Nuxt, Tailwind CSS</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2022</span></span><span class="lvl-list">Angular with NgRx and RxJS, AngularJS, React Native and Expo, Electron, browser extensions, apps in 4 to 10 languages</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y">2026</span></span><span class="lvl-list">React</span></div>
-          </div>
-          <div class="area"><h3>Architecture</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2022</span></span><span class="lvl-list">REST APIs, Node.js with Fastify, a service per machine module, real time over WebSockets, SignalR and OPC UA, offline-first and crash recovery, plugins loaded at runtime, event-driven rule engines, auth and API security</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2022</span></span><span class="lvl-list">Clean architecture and CQRS, multi-tenancy, OAuth and webhooks</span></div>
-          </div>
-          <div class="area"><h3>Design patterns</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Expert"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Expert</em><span class="sk-y">since 2020</span></span><span class="lvl-list">MVVM</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2020</span></span><span class="lvl-list">Dependency injection and inversion of control, state machines, strategy, command, factory, observer, repository, pipeline</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2020</span></span><span class="lvl-list">Template method, adapter, composite, unit of work</span></div>
-          </div>
-          <div class="area"><h3>Data</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2022</span></span><span class="lvl-list">SQL Server, PostgreSQL in production</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2022</span></span><span class="lvl-list">Temporal tables, stored procedures, SQLite</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y">since 2023</span></span><span class="lvl-list">MongoDB</span></div>
-          </div>
-          <div class="area"><h3>Industrial automation</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2020</span></span><span class="lvl-list">CODESYS, object-oriented IEC 61131-3, ISA-88, OPC UA clients, PROFINET, Modbus RTU, RS-232 and RS-485 with my own serial library, alarms and events, PLC simulation, arm control with a game controller, service and operator screens</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2023</span></span><span class="lvl-list">TIA Portal and S7-1500, OPC UA from the PLC side, EtherNet/IP, Modbus TCP, CiA-402 drives, PID control, real-time Linux, Raspberry Pi, PiXtend and ESP32, building automation</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y">2026</span></span><span class="lvl-list">IO-Link, the WinCC Unified alarm bridge</span></div>
-          </div>
-          <div class="area"><h3>Regulated work (GxP)</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2020</span></span><span class="lvl-list">GMP software, audit trails, installation qualification, approved URS, FS, SDS, HDS and user manuals, OQ protocols and requirement tracing</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2023</span></span><span class="lvl-list">E-signatures, Part 11, ALCOA+, GAMP 5</span></div>
-          </div>
-          <div class="area"><h3>Testing</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2022</span></span><span class="lvl-list">xUnit, Vitest, integration tests, hardware-in-the-loop tests against a real PLC</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2022</span></span><span class="lvl-list">Playwright, Jest, Jasmine, NSubstitute, architecture tests, Roslyn analyzers</span></div>
-          </div>
-          <div class="area"><h3>Deployment and operations</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2022</span></span><span class="lvl-list">Docker and Compose, GitHub Actions, automatic deploys with GHCR and Watchtower, Linux servers on Raspberry Pi, fleet deploys over SSH, Windows services at customer sites, GitHub Pages with my own domains, Cloudflare Tunnel, transactional e-mail</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2023</span></span><span class="lvl-list">Cloudflare Access and DNS, IIS, MSIX, offline installs, Bitbucket Pipelines, Azure Key Vault, Loki, Grafana and Uptime Kuma, Tailscale and nftables, SMS over a GSM modem, encrypted backups, Expo EAS builds</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y">2026</span></span><span class="lvl-list">Hetzner cloud servers, Cloudflare Workers and Turnstile</span></div>
-          </div>
-          <div class="area"><h3>Home automation</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">2026</span></span><span class="lvl-list">Home Assistant APIs, my own Home Assistant integration, voice with Wyoming, Whisper and Piper, WLED</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">2026</span></span><span class="lvl-list">Home Assistant setup, local Tuya plugs, MCP servers, office lighting from a PLC into Home Assistant</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y">2026</span></span><span class="lvl-list">ESPHome</span></div>
-          </div>
-          <div class="area"><h3>AI and vision</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2023</span></span><span class="lvl-list">Training YOLO models, building with coding agents in Claude Code</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y">since 2023</span></span><span class="lvl-list">OpenCV, datasets and labelling in Roboflow, LLM integration</span></div>
-          </div>
-          <div class="area"><h3>Working with people</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Advanced"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Advanced</em><span class="sk-y">since 2020</span></span><span class="lvl-list">Technical writing in English and Slovenian, Git</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Working"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Working</em><span class="sk-y"></span></span><span class="lvl-list">Training customers' operators on site</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Basics"><i class="on"></i><i></i><i></i><i></i></span><em>Basics</em><span class="sk-y"></span></span><span class="lvl-list">Mentoring two students</span></div>
-          </div>
-          <div class="area"><h3>Languages I speak</h3><p class="sk-spoken">Slovenian (native), English (C2), <span style="white-space:nowrap">French (A2 to B1)</span></p></div>
+        <div class="kit-short">
+          <div class="ks"><h3>Software</h3><p>C# and .NET with WPF, ASP.NET Core, EF Core and SignalR, SQL Server and PostgreSQL</p></div>
+          <div class="ks"><h3>Web</h3><p>TypeScript, Node.js with Fastify, Vue and Nuxt, Angular, Tailwind CSS</p></div>
+          <div class="ks"><h3>Automation</h3><p>CODESYS and TIA Portal, ISA-88, OPC UA, PROFINET, Modbus, EtherNet/IP, RS-232 and RS-485</p></div>
+          <div class="ks"><h3>Pharma (GxP)</h3><p>GMP software, audit trails, URS, FS, SDS, OQ and installation qualification</p></div>
+          <div class="ks"><h3>Testing and deployment</h3><p>xUnit, Vitest, Playwright, tests against a real PLC, Docker, GitHub Actions, Linux and Windows services</p></div>
+          <div class="ks"><h3>AI and vision</h3><p>YOLO models, OpenCV, building with coding agents in Claude Code</p></div>
         </div>
         <!-- kit:end -->
-      </section>
-    </div>
-
-    <!-- working with me -->
-    <div class="sheet-wrap">
-      <span class="tape tl"></span><span class="tape tr"></span>
-      <section class="sheet light human" style="--tilt:-.3deg">
-        <header class="chapter-head"><h2><span class="num">Between the lines</span>Working with me</h2><span class="when">in my own words</span></header>
-        <blockquote class="motto hand">What I enjoy most is the challenge, and the satisfaction of solving it. I like keeping my mind busy.</blockquote>
-        <div class="human-grid">
-          <div class="hnote"><h3>Progress I can see</h3><p>I love work where the progress is physical, like an arm that moves or a washer that runs its cycle.</p></div>
-          <div class="hnote"><h3>There when it matters</h3><p>I'm available for support, late hours included. From October 2026 I'm joining Trac's support team as a mentee.</p></div>
-          <div class="hnote"><h3>I like teaching</h3><p>I mentor two students and have trained a pharmaceutical customer's staff on the recipe software. I'd like to run more trainings and workshops.</p></div>
-          <div class="hnote"><h3>New things don't scare me</h3><p>This year alone I picked up Siemens TIA Portal and brought a real-time Linux kernel to our PLCs.</p></div>
-          <div class="hnote"><h3>I talk to the people around the system</h3><p>I set up servers with customers' IT and train the operators who use what I build.</p></div>
-          <div class="hnote"><h3>Curious since school</h3><p>At school I went to competitions in maths, physics, chemistry, biology and computing. These days I do home automation for fun.</p></div>
-          <div class="hnote"><h3>Ready to travel</h3><p>I have a B driving licence. I'm happy to travel for commissioning and open to moving for the right role.</p></div>
+        <div class="with-me">
+          <h3>Working with me</h3>
+          <blockquote class="motto hand">What I enjoy most is the challenge, and the satisfaction of solving it. New things don't scare me, and I like keeping my mind busy.</blockquote>
+          <ul class="traits">
+            <li><b>Progress I can see.</b> I like work that moves, like a robot arm or a washer running its cycle.</li>
+            <li><b>There when it matters.</b> I'm available for support, late hours included.</li>
+            <li><b>I like teaching.</b> I mentor two students and train the operators who use what I build.</li>
+          </ul>
         </div>
-        <div class="quote-slot"><span class="hand">a colleague's words, to add</span></div>
       </section>
     </div>
 
@@ -862,20 +763,17 @@
         <header class="chapter-head"><h2><span class="num">Chapter I</span>Education</h2><span class="when">2015 to 2023</span></header>
         <article class="entry" data-area="PLC SW">
           <h3>Technical gymnasium, electrical engineering and computing <time>2015 to 2019</time></h3>
-          <p class="gist">Where I first got into electronics and programming.</p>
-          <p>I studied at Šolski center Novo mesto and wrote my first programs in C# at home.</p>
+          <p>At Šolski center Novo mesto, where I got into electronics and wrote my first C# programs.</p>
           <div class="marks"><span class="tag plc">PLC</span><span class="tag sw">SW</span></div>
         </article>
         <article class="entry" data-area="SW">
           <h3>3rd prize at the national ACM computing competition <time>2018</time></h3>
-          <p class="gist">Algorithms under time pressure, against the best students in the country.</p>
           <p>I placed 6th of 99 in the first group and won a silver award.</p>
           <div class="marks"><span class="tag sw">SW</span><a class="go small" href="https://rtk.ijs.si/2018/rezultati.html" target="_blank" rel="noopener">official results</a></div>
         </article>
         <article class="entry" data-area="SW">
           <h3>BSc in Computer and Information Science, FRI, University of Ljubljana <time>2019 to 2023</time></h3>
-          <p class="gist">My thesis was graded 10 out of 10.</p>
-          <p><em>Design and implementation of a decentralised digital building logbook</em>, a web app that keeps building records on the OriginTrail knowledge graph.</p>
+          <p>My thesis on a decentralised digital building logbook was graded 10 out of 10.</p>
           <div class="marks"><span class="tag sw">SW</span><a class="go small" href="https://ucilnica.fri.uni-lj.si/pluginfile.php/201164/mod_resource/content/1/63190070-GREGOR%20BU%C4%8CAR-Na%C4%8Drt%20in%20izvedba%20decentraliziranega%20dnevnika%20za%20stavbe%20%281%29.pdf" target="_blank" rel="noopener">read the thesis (PDF, Slovenian)</a></div>
         </article>
       </section>
@@ -887,102 +785,30 @@
       <section class="sheet coffee" style="--tilt:-.35deg">
         <header class="chapter-head"><h2><span class="num">Chapter II</span>Trac, the student years</h2><span class="when">2018 to 2024</span></header>
         <p class="chapter-intro">Student work at Trac in Šentjernej, a company that builds automation and software for pharmaceutical plants.</p>
-
-        <article class="entry" data-area="SW">
-          <h3>My first production code <time>2018 to 2021</time></h3>
-          <p class="gist">Learning to work in a team codebase, with tests from the start.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it was</span>Windows desktop tools for Trac's automation projects, in Windows Forms and later WPF.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>MVVM in WPF</li><li>code review in a team</li></ul></div>
-          </div>
-        </article>
-
         <article class="entry" data-area="SW GxP">
           <h3>Recipe editor for batch manufacturing <time>2020 to 2025</time></h3>
-          <p class="gist">A complex visual editor that process engineers use every day.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>Process engineers draw a recipe as a sequential function chart and the plant runs exactly that, at hundreds of installations with thousands of users.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>a reusable library behind an interface</li><li>a base node class, so step types only override what differs</li><li>an old and new audit record for every change</li></ul>
-              <figure class="sketch" aria-hidden="true">
-                <svg viewBox="0 0 120 150"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="35" y="6" width="50" height="22"/><rect x="38" y="9" width="44" height="16"/><path d="M60,28 V44 M48,44 H72 M60,44 V60"/><rect x="35" y="60" width="50" height="22"/><path d="M60,82 V92 M20,92 H100 M30,92 V104 M90,92 V104"/><rect x="8" y="104" width="44" height="20"/><rect x="68" y="104" width="44" height="20"/><path d="M30,124 V136 M90,124 V136 M20,136 H100"/><path d="M60,136 V148"/></g></svg>
-                <figcaption>a recipe, as engineers draw it</figcaption>
-              </figure>
-            </div>
-          </div>
+          <p>Process engineers draw a recipe as a chart and the plant runs exactly that, at hundreds of installations with thousands of users.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span><a class="go small" href="#case">Read the whole story</a></div>
         </article>
-
-        <article class="entry" data-area="SW">
-          <h3>Project-office dashboard <time>2022</time></h3>
-          <p class="gist">A complete Angular front end I built on my own.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>Shows every project from Teamwork next to its contract value, invoiced amount and phase.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>four data sources load in parallel and fail independently</li><li>column resizing as an RxJS stream</li></ul></div>
-          </div>
-        </article>
-
         <article class="entry" data-area="GxP PLC SW">
           <h3>Installation-qualification tool <time>2022 to 2026</time></h3>
-          <p class="gist">A desktop app and an API that take a regulated test procedure off paper, used on five large projects.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>It tests every PLC signal live over OPC UA, records who tested it and whether it passed, and prints the qualification reports.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag gxp">GxP</span><span class="tag plc">PLC</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>a new device type is one class and one template</li><li>temporal tables keep every earlier test attempt</li><li>a warning before manual PLC writes during an interlock</li></ul></div>
-          </div>
+          <p>A desktop app and an API that test every PLC signal live over OPC UA and print the qualification reports, used on five large projects.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag gxp">GxP</span><span class="tag plc">PLC</span><span class="tag sw">SW</span></div>
         </article>
-
-        <article class="entry" data-area="SW">
-          <h3>A bartender kiosk for the Christmas party <time>2022</time></h3>
-          <p class="gist">A one-week demo that ran the batch engine from a guest's touch screen.</p>
-          <p>Guests picked a drink and the app started a batch recipe over SignalR. I wrote it all in Blazor WebAssembly.</p>
-          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><a class="go small" href="#case3">See it in the robot's field report</a></div>
-        </article>
-
         <article class="entry" data-area="SW GxP">
           <h3>Software for a lab sample-preparation robot <time>2023 to 2026</time></h3>
-          <p class="gist">Edge services I designed and run, from the PLC tags to the operator's screen.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>A modular robot that doses, weighs, homogenizes and extracts pharmaceutical samples.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span></div>
-              <a class="go" href="#case3">Read the field report</a>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>one shared core for all six modules</li><li>every command validates itself before anything is written</li><li>agents joined in 2026</li></ul></div>
-          </div>
+          <p>Edge services from the PLC tags to the operator's screen, for a robot that doses, weighs, homogenizes and extracts pharmaceutical samples.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span><a class="go small" href="#case3">Read the whole story</a></div>
         </article>
-
         <article class="entry" data-area="SW">
           <h3>Finding sample tubes with a camera <time>2023 to 2026</time></h3>
-          <p class="gist">A vision model taken from training to an unattended service.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>The model finds every tube in a photo of a rack, maps it to its slot and tells open from closed.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>blur and exposure checks retake bad photos</li><li>the camera reopens itself when it fails</li></ul></div>
-          </div>
+          <p>A YOLO model that finds every tube in a photo of a rack and tells open from closed, running as an unattended service.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><a class="go small" href="#case3">Read the whole story</a></div>
         </article>
-
         <article class="entry" data-area="SW">
           <h3>Workload planner <time>2023 to 2026</time></h3>
-          <p class="gist">I turned a real scheduling problem into an algorithm that saves about €5,200 a year.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>Plans every task against each person's hours six months ahead and replaced a paid tool for 29 people.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>day-by-day scheduling against real capacity, fixed dates first</li><li>reusable behaviour in Vue composables</li><li>a typed .NET proxy that caches Teamwork's answers</li></ul></div>
-          </div>
+          <p>It plans each person's hours six months ahead. It replaced a paid tool for 29 people and saves about €5,200 a year.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
         </article>
       </section>
     </div>
@@ -994,14 +820,8 @@
         <header class="chapter-head"><h2><span class="num">Chapter III</span>Špica International</h2><span class="when">Sep 2022 to May 2023</span></header>
         <article class="entry" data-area="SW">
           <h3>A time-tracking SaaS, front to back <time>2022 to 2023</time></h3>
-          <p class="gist">Enterprise Angular and a large existing codebase, as a student.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it is</span>A time-tracking product for teams, in the middle of moving from AngularJS to modern Angular.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>NgRx actions, effects and selectors behind a facade</li><li>xUnit tests for every new service</li></ul></div>
-          </div>
+          <p>Angular with NgRx and a C# API, in the middle of the move from AngularJS to modern Angular.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span></div>
         </article>
       </section>
     </div>
@@ -1011,73 +831,31 @@
       <span class="tape tl"></span><span class="tape tr"></span>
       <section class="sheet" style="--tilt:-.25deg">
         <header class="chapter-head"><h2><span class="num">Chapter IV</span>Trac, senior project engineer</h2><span class="when">Since June 2024</span></header>
-        <p class="chapter-intro">I do plant software end to end for pharmaceutical customers, from PLC programs and OPC UA links to .NET and web services, operator screens and the validation documents.</p>
-
-        <article class="entry" data-area="PLC">
-          <h3>Controllers for the sample-preparation robot <time>2024 to 2026</time></h3>
-          <p class="gist">Object-oriented PLC code at library scale, shared by seven controllers.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>The PLC side of the same robot, on seven CODESYS controllers that run on Raspberry Pi.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag plc">PLC</span></div>
-              <a class="go" href="#case3">Read the field report</a>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>35 operations extend one abstract base</li><li>a simulation controller to test without hardware</li><li>some 2026 features with agents, after solving the problem by hand</li></ul></div>
-          </div>
-        </article>
-
-        <aside class="scrap">
-          <span class="pin-dot"></span>
-          <p class="hand">Since late 2025 I actively use Claude Code where it helps and the regulations allow it. I still write some code by hand and review everything the agent writes. Before that, AI only answered my questions.</p>
-        </aside>
-
+        <p class="chapter-intro">I build plant software end to end for pharmaceutical customers, from .NET and web services down to OPC UA, the PLC and the validation documents.</p>
         <article class="entry" data-area="GxP SW PLC">
           <h3>Rewrite of a batch-manufacturing platform <time>2026</time></h3>
-          <p class="gist">A fault-tolerant recipe engine for a validated system, proven against a real PLC.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>The platform pharmaceutical plants use to write, approve and run batch recipes, rebuilt from the ground up in .NET 10.</p>
-              <div class="marks"><span class="stamp agents">With agents</span><span class="tag gxp">GxP</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
-              <a class="go" href="#case">Read the field report</a>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>a state machine per recipe step, so Hold, Stop and Abort behave the same everywhere</li><li>run state saved safely, so a crash recovers every running batch</li><li>a spec first, then agents, then my review</li></ul></div>
-          </div>
+          <p>The platform plants use to write, approve and run batch recipes, rebuilt in .NET 10 so that a crash recovers every running batch.</p>
+          <div class="marks"><span class="stamp agents">With agents</span><span class="tag gxp">GxP</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><a class="go small" href="#case">Read the whole story</a></div>
         </article>
-
+        <aside class="scrap">
+          <span class="pin-dot"></span>
+          <p class="hand">Since late 2025 I use Claude Code where it helps and the regulations allow it, and I review everything it writes.</p>
+        </aside>
+        <article class="entry" data-area="PLC">
+          <h3>Controllers for the sample-preparation robot <time>2024 to 2026</time></h3>
+          <p>Object-oriented PLC code shared by seven CODESYS controllers on Raspberry Pi. A real-time Linux kernel cut their worst-case delay <span class="circled">301 µs → 94 µs</span>.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="tag plc">PLC</span><a class="go small" href="#case3">Read the whole story</a></div>
+        </article>
         <article class="entry" data-area="PLC GxP">
           <h3>PLC programs in Siemens TIA Portal <time>2026</time></h3>
-          <p class="gist">Two Siemens projects, both in SCL on S7-1500 controllers.</p>
-          <p>For an IBC washer I wrote seven of the eight cleaning operations on the company's ISA-88 template. On a clean utilities plant I moved the project to a new electronic-records bridge.</p>
+          <p>SCL on S7-1500, with seven of the eight cleaning operations of an IBC washer and a new electronic-records bridge for a clean utilities plant.</p>
           <div class="marks"><span class="stamp checked">By hand, AI-checked</span><span class="tag plc">PLC</span><span class="tag gxp">GxP</span></div>
         </article>
-
         <article class="entry" data-area="PLC">
           <h3>Building management for the company's office building <time>2026</time></h3>
-          <p class="gist">I extended the building's existing PLC program with climate sensors and device health checks.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>A Raspberry Pi running CODESYS controls ventilation, water loops and lighting over PROFINET, Modbus RTU and Modbus TCP.</p>
-              <div class="marks"><span class="stamp checked">By hand, AI-checked</span><span class="tag plc">PLC</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>one "acknowledge" restarts only the failed devices</li><li>a 15-second hold after a restart, so a slow link can't trip a pump</li></ul></div>
-          </div>
+          <p>I extended the building's CODESYS program with climate sensors and device health checks over Modbus and PROFINET.</p>
+          <div class="marks"><span class="stamp checked">By hand, AI-checked</span><span class="tag plc">PLC</span></div>
         </article>
-      </section>
-    </div>
-
-    <!-- field notes on fieldbuses -->
-    <div class="sheet-wrap">
-      <span class="tape tl"></span><span class="tape tr"></span>
-      <section class="sheet light notes" style="--tilt:.3deg">
-        <header class="chapter-head"><h2><span class="num">Field notes</span>Fieldbuses and serial lines</h2><span class="when">what I did on each</span></header>
-        <div class="proto"><span class="pname">PROFINET</span><p>Mitsubishi MR-J4 servo drives (CiA-402) on Raspberry Pi PLCs. Moving them to a real-time Linux kernel cut the worst-case delay <span class="circled">301 µs → 94 µs</span>.</p></div>
-        <div class="proto"><span class="pname">EtherNet/IP</span><p>SMC step-motor controllers for the robot's axes.</p></div>
-        <div class="proto"><span class="pname">Modbus RTU</span><p>Climate sensors and device health checks on a building bus, and a DH-Robotics rotary gripper.</p></div>
-        <div class="proto"><span class="pname">Modbus TCP</span><p>Circulation pumps in the building's water loops.</p></div>
-        <div class="proto"><span class="pname">RS-232</span><p>My own driver for an A&amp;D analytical balance.</p></div>
-        <div class="proto"><span class="pname">RS-485</span><p>A chiller, on the object-oriented serial library I wrote.</p></div>
-        <div class="proto"><span class="pname">IO-Link</span><p>Instruments from Endress+Hauser, Festo, GEMÜ and ifm.</p></div>
-        <div class="proto"><span class="pname">OPC UA</span><p>The link between every PLC and the .NET and web services.</p></div>
       </section>
     </div>
 
@@ -1086,66 +864,25 @@
       <span class="tape tl"></span><span class="tape tr"></span>
       <section class="sheet light" style="--tilt:.35deg">
         <header class="chapter-head"><h2><span class="num">Chapter V</span>Own expeditions</h2><span class="when">Since 2024</span></header>
+        <article class="entry" data-area="SW PLC">
+          <h3>WebSCADA, now EVA <time>2024 to 2026</time></h3>
+          <p>Browser-based monitoring for fire-safety and building systems, built by a team of five, where I led the gateway and the live floor plans and built the rules that turn alarms into SMS and commands.</p>
+          <div class="marks"><span class="stamp byhand">By hand</span><span class="stamp agents">With agents</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><a class="go small" href="#case5">Read the whole story</a></div>
+        </article>
         <article class="entry" data-area="SW">
           <h3>Time-tracking and invoicing SaaS <time>2026</time></h3>
-          <p class="gist">A multi-tenant SaaS I designed, secured and keep shipping.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>It tracks time against projects and budgets and turns it into quotes and invoices.</p>
-              <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span></div>
-              <a class="go" href="#case2">Read the field report</a>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>clean architecture, with commands and queries per feature</li><li>tests fail the build until a new table or endpoint keeps customers apart</li><li>the phone app works offline and syncs later</li></ul></div>
-          </div>
+          <p>A multi-tenant SaaS I designed and keep shipping, from time tracking to quotes and invoices.</p>
+          <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span><a class="go small" href="#case2">Read the whole story</a></div>
         </article>
         <article class="entry" data-area="SW">
           <h3>Booking platform, with a team <time>2026</time></h3>
-          <p class="gist">A booking widget that drops into any website.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it is</span>Online booking for appointment businesses such as clinics and barbers.</p>
-              <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span></div>
-              <a class="go" href="#case4">Read the field report</a>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>isolated in Shadow DOM, so the host's styles can't break it</li><li>reads the host's colours and fonts, and checks the contrast</li></ul></div>
-          </div>
-        </article>
-        <article class="entry" data-area="SW PLC">
-          <h3>WebSCADA, now EVA <time>2024 to 2026</time></h3>
-          <p class="gist">The gateway takes protocol plugins and keeps watching through server outages.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it is</span>Browser-based monitoring for building and fire-safety systems, built by a team of five and running at several sites.</p>
-              <div class="marks"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>licence keys signed inside a key vault</li><li>repeated messages can't trigger an automation twice</li><li>a build check that every endpoint has an access rule</li></ul></div>
-          </div>
-                  <div class="photos">
-            <a class="photo" href="assets/webscada/01-floor-plan-alarms.webp"><img src="assets/webscada/01-floor-plan-alarms.thumb.webp" decoding="async" alt="Live floor plan of a demo office building, with two smoke detectors and the fire panel in alarm and the active alarm list above the plan" loading="lazy"><span class="cap">live floor plan with alarms</span></a>
-            <a class="photo" href="assets/webscada/02-device-commands.webp"><img src="assets/webscada/02-device-commands.thumb.webp" decoding="async" alt="The fire panel selected on the plan, with its commands in the side panel" loading="lazy"><span class="cap">commands for a fire panel</span></a>
-            <a class="photo" href="assets/webscada/03-linked-commands.webp"><img src="assets/webscada/03-linked-commands.thumb.webp" decoding="async" alt="The evacuate command also turns on both sounders and releases the stairwell fire door" loading="lazy"><span class="cap">linked commands</span></a>
-            <a class="photo" href="assets/webscada/04-events-history.webp"><img src="assets/webscada/04-events-history.thumb.webp" decoding="async" alt="Event history with alarms, faults, restorals, operator commands and comments" loading="lazy"><span class="cap">event history</span></a>
-            <a class="photo" href="assets/webscada/05-first-floor-faults.webp"><img src="assets/webscada/05-first-floor-faults.thumb.webp" decoding="async" alt="First floor with a pump fault, a ventilation warning, a dirty smoke detector and a live temperature gauge" loading="lazy"><span class="cap">faults and a live gauge</span></a>
-            <a class="photo tall" href="assets/webscada/06-phone-active-events.webp"><img src="assets/webscada/06-phone-active-events.thumb.webp" decoding="async" alt="The same web app on a phone, showing the active alarms" loading="lazy"><span class="cap">on a phone</span></a>
-          </div>
-          <p class="permission">Screens from the real app, filled with made-up data for a demo building.</p>
-        </article>
-        <article class="entry" data-area="SW">
-          <h3>Pub league app, a fun side project <time>2026</time></h3>
-          <p class="gist">I took a prototype and turned it into a finished app.</p>
-          <p>Leagues, tournaments and Elo rankings for pub games, on .NET and Expo. I added the ranking logic, push notifications and deployment to a Raspberry Pi.</p>
-          <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span></div>
+          <p>My part is the booking widget that drops into any website, and the way back into the customer's calendar.</p>
+          <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span><a class="go small" href="#case4">Read the whole story</a></div>
         </article>
         <article class="entry" data-area="SW PLC">
           <h3>Home automation by voice <time>2026</time></h3>
-          <p class="gist">An assistant that keeps working even when parts of it go down.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">what it does</span>You talk to the house, and it handles lights, switches and reminders through Home Assistant.</p>
-              <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
-            </div>
-            <div class="how"><span class="lbl">how I built it</span><ul><li>every AI model behind one interface, with failover by health</li><li>home commands go to Home Assistant first, so lights work with the PC off</li></ul></div>
-          </div>
+          <p>You talk to the house and it runs lights, switches and reminders through Home Assistant, even when parts of it are down.</p>
+          <div class="marks"><span class="stamp agents">With agents</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
         </article>
       </section>
     </div>
@@ -1198,23 +935,80 @@
           <span class="tap hand">tap the chest</span>
         </div>
         <div class="loot">
-          <div class="letter-row">
-            <a class="letter" id="mail" href="mailto:gregor.bucar@gmail.com"><span class="wax">G</span><span class="hand">Write to me</span><span class="addr">gregor.bucar@gmail.com</span></a>
-            <button class="copy hand" type="button" id="copyMail" data-copy="gregor.bucar@gmail.com">copy the address</button>
-          </div>
-          <p class="loot-note hand">or take my CV with you</p>
-          <div class="cv-tags">
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-short-EN.pdf" download><b>CV, short</b><small>English, 2 pages</small></a>
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-long-EN.pdf" download><b>CV, long</b><small>English, every project</small></a>
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-short-SL.pdf" download><b>Življenjepis, kratek</b><small>slovensko</small></a>
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-long-SL.pdf" download><b>Življenjepis, dolg</b><small>slovensko</small></a>
-          </div>
           <div class="coins-row">
-            <a class="coin" href="https://github.com/RealGregor" target="_blank" rel="noopener"><span>GitHub</span></a>
-            <a class="coin" href="https://www.linkedin.com/in/gregor-bucar-916128135" target="_blank" rel="noopener"><span>LinkedIn</span></a>
+            <a class="coin" href="https://github.com/RealGregor" target="_blank" rel="noopener" data-goatcounter-click="github"><span>GitHub</span></a>
+            <a class="coin" href="https://www.linkedin.com/in/gregor-bu%C4%8Dar-916128135" target="_blank" rel="noopener" data-goatcounter-click="linkedin"><span>LinkedIn</span></a>
           </div>
         </div>
       </section>
+    </div>
+  </main>
+
+
+  <!-- ================= FIELD REPORT: WebSCADA ================= -->
+  <main class="page" id="case5">
+    <div class="sheet-wrap">
+      <span class="tape t1"></span>
+      <article class="sheet light report" style="--tilt:.2deg">
+        <a class="back" href="#home">Back to the journal</a><br>
+        <span class="report-kind">A closer look</span>
+        <h1 class="report-title">WebSCADA, now EVA</h1>
+        <div class="report-meta"><span class="stamp byhand">By hand</span><span class="stamp agents">With agents</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><span class="hand" style="font-size:28px;color:var(--red)">2024 to 2026</span></div>
+        <p class="report-sum">Browser-based monitoring for fire-safety and building systems, built by a team of five and running at several sites. I led the gateway and the live floor plans, and built the rules that turn events into SMS and commands.</p>
+        <aside class="sticky">
+          <span class="hand">Who built this</span>
+          <dl>
+            <dt>Built by</dt><dd>A team of five</dd>
+            <dt>My part</dt><dd>The gateway, the floor plans, global linkage and SMS</dd>
+            <dt>Status</dt><dd>Running at several sites</dd>
+            <dt>Code</dt><dd>Private</dd>
+          </dl>
+        </aside>
+        <h3>What it does</h3>
+        <p>Fire panels from several makers and other building devices report to a small gateway on site, which passes everything on to the server. Operators watch live floor plans in the browser or on a phone, and acknowledge alarms and send commands from there.</p>
+        <h3>How it fits together</h3>
+        <figure class="map">
+          <svg viewBox="0 0 900 470" role="img" aria-label="A treasure map of the system, with the fire panels feeding my gateway on site, the gateway reaching the API, and my linkage engine inside the API sending live data to the web app and alarms to the SMS service, e-mail and webhooks.">
+            <g class="waves"><path class="wave" d="M330,60 q8,-8 16,0 t16,0"/><path class="wave" d="M600,40 q8,-8 16,0 t16,0"/><path class="wave" d="M40,200 q8,-8 16,0 t16,0"/><path class="wave" d="M860,200 q8,-8 16,0 t16,0"/><path class="wave" d="M80,440 q8,-8 16,0 t16,0"/><path class="wave" d="M700,450 q8,-8 16,0 t16,0"/></g>
+            <ellipse class="isl" cx="130" cy="95" rx="105" ry="50"/><text class="il" x="130" y="91">Fire panels</text><text class="is" x="130" y="111">several makers</text>
+            <ellipse class="isl" cx="160" cy="300" rx="135" ry="74"/><ellipse class="isl-in" cx="160" cy="300" rx="110" ry="56"/>
+            <text class="il" x="160" y="288">Gateway</text><text class="is" x="160" y="310">on site, Windows or Linux</text>
+            <g transform="translate(160,343)"><path class="xm" d="M-12,-12 L12,12 M12,-12 L-12,12"/></g>
+            <ellipse class="isl" cx="525" cy="210" rx="170" ry="95"/><ellipse class="isl-in" cx="525" cy="210" rx="142" ry="74"/>
+            <text class="il" x="525" y="170">API</text><text class="is" x="525" y="192">ASP.NET Core, SQL Server, SignalR</text>
+            <rect class="fort" x="490" y="212" width="70" height="38" rx="3"/><path class="fort" d="M490,212 l8,-10 l8,10 l8,-10 l8,10 l8,-10 l8,10 l8,-10 l8,10"/><text class="xl" x="525" y="272">my linkage engine</text>
+            <ellipse class="isl" cx="790" cy="80" rx="98" ry="50"/><text class="il" x="790" y="76">Web app</text><text class="is" x="790" y="96">live floor plans</text>
+            <ellipse class="isl" cx="785" cy="330" rx="105" ry="50"/><text class="il" x="785" y="326">SMS service</text><text class="is" x="785" y="346">GSM modem, AT commands</text>
+            <ellipse class="isl" cx="500" cy="420" rx="105" ry="34"/><text class="il" x="500" y="427">E-mail, webhooks</text>
+            <path class="rt key" d="M135,147 C140,175 150,200 156,224"/><text class="rl key" x="250" y="188">own protocols, Modbus</text>
+            <path class="rt key" d="M292,282 C320,272 340,262 362,250"/><text class="rl key" x="400" y="345">SignalR, queued in outages</text>
+            <path class="rt key" d="M640,140 C670,120 690,110 705,104"/><text class="rl key" x="748" y="160">live over SignalR</text>
+            <path class="rt key" d="M655,272 C675,290 688,298 700,304"/><text class="rl key" x="625" y="330">alarm SMS</text>
+            <path class="rt" d="M590,298 C585,330 575,360 562,390"/>
+          </svg>
+          <figcaption>The red routes are mine. The gateway keeps its messages on disk while the server is down, and my linkage engine in the API turns events into actions. The rest of the API is mostly the team's.</figcaption>
+        </figure>
+        <h3>What I built</h3>
+        <ul>
+          <li><em>The gateway</em> runs on a Windows PC or a Raspberry Pi and loads each protocol as a plugin. I wrote one maker's driver and a generic Modbus driver that reads each panel's register map from its configuration, so a new panel rarely needs new code. <span class="mini">driver by hand 2024 to 2025, plugins and Modbus with agents 2026</span></li>
+          <li><em>Server outages don't stop it.</em> The gateway keeps polling, saves its messages to disk, and after a restart starts from its last saved configuration. If a gateway goes silent, the server raises an alarm within 90 seconds, the SP5 grade of EN 50136. <span class="mini">with agents, 2026</span></li>
+          <li><em>Global linkage</em> rules link events to actions. Operators build conditions from AND and OR groups, and a rule can send an SMS or e-mail, call a webhook, command a device or write to a serial port. Cooldowns and a daily SMS cap stop a chattering detector from flooding phones, and a repeated message never fires a rule twice. <span class="mini">with agents, 2026</span></li>
+          <li><em>SMS over a GSM modem.</em> A small service drives a USB modem with AT commands, so a site can send alarm SMS without an online provider. It reopens a modem that stops answering and never retries a failed SIM PIN, because a third wrong try locks the SIM. <span class="mini">with agents, 2026</span></li>
+          <li><em>Live floor plans</em> on a Konva canvas that operators lay out themselves, with snapping to a grid. Alarms pulse by priority, a device's state rises to its fire panel and new alarms play a sound. One press can command several devices, so evacuate also sounds the sirens and releases a fire door. <span class="mini">by hand 2025, linked commands with agents 2026</span></li>
+        </ul>
+        <h3>Screens</h3>
+        <div class="photos">
+          <a class="photo" href="assets/webscada/01-floor-plan-alarms.webp"><img src="assets/webscada/01-floor-plan-alarms.thumb.webp" decoding="async" alt="Live floor plan of a demo office building, with two smoke detectors and the fire panel in alarm and the active alarm list above the plan" loading="lazy"><span class="cap">live floor plan with alarms</span></a>
+          <a class="photo" href="assets/webscada/02-device-commands.webp"><img src="assets/webscada/02-device-commands.thumb.webp" decoding="async" alt="The fire panel selected on the plan, with its commands in the side panel" loading="lazy"><span class="cap">commands for a fire panel</span></a>
+          <a class="photo" href="assets/webscada/03-linked-commands.webp"><img src="assets/webscada/03-linked-commands.thumb.webp" decoding="async" alt="The evacuate command also turns on both sounders and releases the stairwell fire door" loading="lazy"><span class="cap">linked commands</span></a>
+          <a class="photo" href="assets/webscada/04-events-history.webp"><img src="assets/webscada/04-events-history.thumb.webp" decoding="async" alt="Event history with alarms, faults, restorals, operator commands and comments" loading="lazy"><span class="cap">event history</span></a>
+          <a class="photo" href="assets/webscada/05-first-floor-faults.webp"><img src="assets/webscada/05-first-floor-faults.thumb.webp" decoding="async" alt="First floor with a pump fault, a ventilation warning, a dirty smoke detector and a live temperature gauge" loading="lazy"><span class="cap">faults and a live gauge</span></a>
+          <a class="photo tall" href="assets/webscada/06-phone-active-events.webp"><img src="assets/webscada/06-phone-active-events.thumb.webp" decoding="async" alt="The same web app on a phone, showing the active alarms" loading="lazy"><span class="cap">on a phone</span></a>
+        </div>
+        <p class="permission">Screens from the real app, filled with made-up data for a demo building.</p>
+        <h3>What the team built</h3>
+        <p>They built the API's foundation and its database, the first version of the web app, and a second maker's driver.</p>
+      </article>
     </div>
   </main>
 
@@ -1225,7 +1019,7 @@
       <span class="tape t2"></span><span class="tape t3"></span>
       <article class="sheet light report" style="--tilt:-.2deg">
         <a class="back" href="#home">Back to the journal</a><br>
-        <span class="report-kind">Field report</span>
+        <span class="report-kind">A closer look</span>
         <h1 class="report-title">Rewrite of a batch-manufacturing platform</h1>
         <div class="report-meta"><span class="stamp agents">With agents</span><span class="tag gxp">GxP</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><span class="hand" style="font-size:28px;color:var(--red)">2026</span></div>
         <p class="report-sum">The platform pharmaceutical plants use to write, approve and run batch recipes, rebuilt from the ground up in .NET 10. It covers recipe authoring and execution, the PLC bridge and the audit trail.</p>
@@ -1272,7 +1066,7 @@
       <span class="tape t2"></span><span class="tape t3"></span>
       <article class="sheet light report" style="--tilt:.2deg">
         <a class="back" href="#home">Back to the journal</a><br>
-        <span class="report-kind">Field report</span>
+        <span class="report-kind">A closer look</span>
         <h1 class="report-title">A lab sample-preparation robot</h1>
         <div class="report-meta"><span class="stamp byhand">By hand</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><span class="tag gxp">GxP</span><span class="hand" style="font-size:28px;color:var(--red)">2023 to 2026</span></div>
         <p class="report-sum">A modular robot that prepares pharmaceutical samples for analysis. I wrote most of its module software, nearly all of its PLC code, and the camera service that finds the sample tubes.</p>
@@ -1340,7 +1134,7 @@
       <span class="tape t1"></span>
       <article class="sheet light report" style="--tilt:.25deg">
         <a class="back" href="#home">Back to the journal</a><br>
-        <span class="report-kind">Field report</span>
+        <span class="report-kind">A closer look</span>
         <h1 class="report-title">Time-tracking and invoicing SaaS</h1>
         <div class="report-meta"><span class="stamp agents">With agents</span><span class="tag sw">SW</span><span class="hand" style="font-size:28px;color:var(--red)">2026</span></div>
         <p class="report-sum">Time tracking, budgets, quotes, invoices and profitability for small teams. One .NET 10 back end serves a web app, a mobile app, a tray timer and a browser extension.</p>
@@ -1414,7 +1208,7 @@
       <span class="tape t2"></span><span class="tape t3"></span>
       <article class="sheet light report" style="--tilt:-.2deg">
         <a class="back" href="#home">Back to the journal</a><br>
-        <span class="report-kind">Field report</span>
+        <span class="report-kind">A closer look</span>
         <h1 class="report-title">The widget and calendar for a booking platform</h1>
         <div class="report-meta"><span class="stamp agents">With agents</span><span class="tag sw">SW</span><span class="hand" style="font-size:28px;color:var(--red)">2026</span></div>
         <p class="report-sum">Online booking for clinics, salons and other appointment businesses, built by a small team. My part is the widget a business drops into its own website, and "add to calendar" for its customers.</p>
@@ -1827,9 +1621,16 @@
   // ---------- pages: the hash picks the page; turning to it flips the sheet ----------
   var pages = $$('.page');
   var homeY = 0;
+  // ---------- visitor stats: an event for each story opened, once GoatCounter has loaded (an ad blocker may stop it, which is fine) ----------
+  function stat(path) {
+    function send() { if (window.goatcounter && goatcounter.count) goatcounter.count({ path: path, title: path, event: true }); }
+    if (document.readyState === 'complete') send(); else addEventListener('load', send);
+  }
+
   function show(id, animate) {
     var next = document.getElementById(id), cur = $('.page.on');
     if (!next || !next.classList.contains('page')) next = home;
+    if (next !== home && next !== cur) stat('story-' + next.id);
     if (cur === next) { buildTrail(); return; }
     // remember where the reader was in the journal, and bring them back there from a field report
     if (cur === home) homeY = scrollY;
@@ -1924,7 +1725,14 @@
     else { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); play(); } }, { threshold: .45 }); io.observe(t); }
     t.addEventListener('click', function () { t.classList.add('play'); setOpen(!t.classList.contains('open')); });
     t.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.click(); } });
+  })();
+
+  // ---------- the e-mail address under the CVs can be copied ----------
+  (function () {
+    var copyBtn = $('#copyMail');
+    if (!copyBtn) return;
     copyBtn.addEventListener('click', function () {
+      stat('email-copied');
       var text = copyBtn.dataset.copy, done = function () { copyBtn.textContent = tr('copied!', 'kopirano!'); setTimeout(function () { copyBtn.textContent = tr('copy the address', 'kopiraj naslov'); }, 1600); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () {}); else done();
     });
@@ -1977,6 +1785,68 @@
     }, { passive: true });
   })();
 
+  // ---------- on a short screen the right-hand column sticks by its bottom, so the CVs and the letter stay in view ----------
+  (function () {
+    var rail = $('.ribbons-in'), wide = matchMedia('(min-width: 1081px)');
+    if (!rail) return;
+    function fit() { rail.style.setProperty('--rail-top', wide.matches ? Math.min(70, innerHeight - rail.offsetHeight - 30) + 'px' : ''); }
+    addEventListener('resize', fit); addEventListener('load', fit); fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  })();
+
+  // ---------- the CV tags hang on a twine: scrolling bounces the twine, and each tag swings and twists on its own string ----------
+  (function () {
+    var line = $('.post .line'), wide = matchMedia('(min-width: 1081px)');
+    if (!line || reduce) return;
+    var path = $('.twine path', line), raf = 0, last = 0, sy = scrollY, st = 0, sv = 0, wind = 0;
+    var s = 0, ds = 0;   // how far the twine sags past its rest, and how fast
+    var tags = $$('.hang', line).map(function (el, i) {
+      var len = parseFloat(el.style.getPropertyValue('--len')), x = parseFloat(el.style.getPropertyValue('--x')) / 100;
+      // a longer string swings slower; every tag also gets its own twist and flutter so they never move as one
+      return { el: el, x: x, r: parseFloat(el.style.getPropertyValue('--r')), k: 2600 / (len + 30), a: 0, v: 0, w: 0, wv: 0,
+               f: 7 + i * 2.3, ph: i * 1.7, dir: i % 2 ? -1 : 1 };
+    });
+    function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+    function loop(now) {
+      var dt = Math.min(.04, (now - last) / 1000), moving = false; last = now;
+      if (sv && now - st > 120) { tags.forEach(function (t) { t.v += sv * 22; t.wv -= sv * 40 * t.dir; }); ds += sv * 60; sv = 0; }   // the scrolling stopped: everything swings back
+      wind *= Math.pow(.02, dt);
+      ds += (-140 * s - 7 * ds) * dt; s = Math.max(-4, Math.min(12, s + ds * dt));
+      path.setAttribute('d', 'M2,4 Q100,' + (18 + 2 * s).toFixed(2) + ' 198,4');
+      tags.forEach(function (t) {
+        var gust = wind * Math.sin(now / 1000 * t.f + t.ph);
+        t.v += (-t.k * t.a - 2.6 * t.v + gust * 260) * dt; t.a = Math.max(-35, Math.min(35, t.a + t.v * dt));
+        t.wv += (-90 * t.w - 3.4 * t.wv + gust * 520 * t.dir) * dt; t.w = Math.max(-70, Math.min(70, t.w + t.wv * dt));
+        var dy = 4 * s * t.x * (1 - t.x);
+        t.el.style.transform = 'translateY(' + dy.toFixed(2) + 'px) rotate(' + (t.r + t.a).toFixed(2) + 'deg) rotateY(' + t.w.toFixed(1) + 'deg)';
+        if (Math.abs(t.a) > .05 || Math.abs(t.v) > .1 || Math.abs(t.w) > .1 || Math.abs(t.wv) > .2) moving = true;
+      });
+      if (!moving && Math.abs(s) < .02 && Math.abs(ds) < .05 && !sv && wind < .01) {
+        tags.forEach(function (t) { t.el.style.transform = ''; t.a = t.v = t.w = t.wv = 0; });
+        path.setAttribute('d', 'M2,4 Q100,18 198,4'); s = ds = 0; raf = 0; return;
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    addEventListener('scroll', function () {
+      if (!wide.matches || !home.classList.contains('on')) return;
+      var now = performance.now(), dt = Math.max(16, now - st), nv = (scrollY - sy) / dt;
+      if (now - st > 120) sv = 0;
+      // a change of scroll speed tugs the tags, the twine dips, and fast scrolling blows on them like wind
+      tags.forEach(function (t) { t.v -= (nv - sv) * 22; t.wv += (nv - sv) * 40 * t.dir; });
+      ds -= (nv - sv) * 60; wind = Math.min(1, Math.max(wind, Math.abs(nv) / 3));
+      sy = scrollY; st = now; sv = nv;
+      kick();
+    }, { passive: true });
+    // brushing past a tag with the mouse sets it swinging
+    tags.forEach(function (t) {
+      t.el.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse' || !wide.matches) return;
+        t.v += e.movementX * 9; t.wv += e.movementX * 14;
+        kick();
+      });
+    });
+  })();
+
   // ---------- animations that loop only run while they can be seen ----------
   if (window.IntersectionObserver) {
     var liveIO = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); }); });
@@ -1987,6 +1857,8 @@
   // the site uses the pirate look and the easier-to-read text
   setTheme('pirate');
   setRead('easy');
+  var visit = (location.search.match(/[?&]s=([a-z0-9]{4,12})/) || [])[1];
+  if (visit) stat('s/' + visit);
   show((location.hash || '#home').slice(1), false);
   startIntro();
   restoreSwitch();

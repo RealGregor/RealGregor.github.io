@@ -143,7 +143,7 @@
   .bk-inside { transform: rotateY(180deg); background: radial-gradient(ellipse 120% 100% at 50% 50%, transparent 55%, rgba(60, 35, 10, .38) 100%), var(--blots), var(--noise), #B8925E; box-shadow: inset -30px 0 40px rgba(0, 0, 0, .35); }
   /* a pasted label inside the cover, in your handwriting */
   .found { position: absolute; left: 14%; right: 16%; top: 30%; padding: 34px 40px 30px; transform: rotate(-2.5deg); background: repeating-linear-gradient(transparent 0 56px, rgba(44, 74, 114, .22) 56px 58px), var(--noise), #EFE3C4; box-shadow: 0 6px 14px rgba(0, 0, 0, .3); text-align: center; color: var(--ink); }
-  .found span { display: block; font-family: var(--f-head); font-style: italic; font-size: 34px; color: var(--ink-2); }
+  .found span { display: block; font-family: var(--f-hand); font-size: 36px; line-height: 1.1; color: var(--ink-2); transform: rotate(-1deg); }
   .found b { display: block; margin: 6px 0 2px; font-family: var(--f-hand); font-weight: 400; font-size: 96px; line-height: 1; color: var(--blue); transform: rotate(-2deg); }
   .found em { display: block; margin-top: 8px; font-family: var(--f-hand); font-style: normal; font-size: 58px; color: var(--blue); }
   #home.dropping > .sheet-wrap { transform-origin: 50% 0; will-change: transform; }
@@ -219,7 +219,7 @@
   /* ============ bookmark ribbons (area filter) ============ */
   /* ribbons sit behind the pages, so only their ends stick out past the right edge */
   .ribbons { position: absolute; top: 0; bottom: 0; right: 0; width: 0; z-index: -1; }
-  .ribbons-in { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 8px; }
+  .ribbons-in { position: sticky; top: var(--rail-top, 70px); display: flex; flex-direction: column; gap: 8px; }
   .ribbon { position: relative; display: flex; align-items: center; gap: 8px; width: 172px; margin-left: -22px; padding: 7px 26px 7px 44px; border: 0; color: #F4E9D0; font-family: var(--f-head); font-size: 16px; text-align: left; cursor: pointer; clip-path: polygon(0 0, 100% 0, 88% 50%, 100% 100%, 0 100%); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .25); transform: translateX(-12px); transition: transform 220ms var(--ease-out), filter 220ms var(--ease-out); background: linear-gradient(rgba(255, 255, 255, .08), rgba(0, 0, 0, .12)), var(--c); }
   .ribbon::after { content: ""; position: absolute; inset: 0; background: var(--noise); opacity: .6; pointer-events: none; }
   .ribbon[data-f="all"] { --c: var(--all); } .ribbon[data-f="SW"] { --c: var(--sw); } .ribbon[data-f="PLC"] { --c: var(--plc); } .ribbon[data-f="GxP"] { --c: var(--gxp); }
@@ -247,34 +247,11 @@
   .go { display: inline-block; margin-top: 8px; font-family: var(--f-head); font-style: italic; font-size: 20px; color: var(--blue); text-decoration: underline; text-decoration-style: wavy; text-decoration-thickness: 1px; text-underline-offset: 5px; }
   .go:hover { color: var(--red); }
   /* entry: what it does and my part on the left, the principles pencilled in on the right */
-  .entry-body { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 30px; align-items: start; }
-  .lbl { display: block; margin: 8px 0 -1px; color: var(--red); font-family: var(--f-hand); font-size: 24px; line-height: 1; transform: rotate(-1.5deg); transform-origin: left; }
-  .how { padding-top: 4px; }
-  .how ul { margin: 6px 0 0; padding: 0; list-style: none; }
-  .how li { position: relative; margin-bottom: 7px; padding-left: 18px; font-family: var(--f-head); font-style: italic; font-size: 16.5px; line-height: 1.3; color: var(--ink-2); }
-  .how li::before { content: ""; position: absolute; left: 0; top: .6em; width: 10px; height: 2px; border-radius: 2px; background: var(--red); transform: rotate(-12deg); }
-  .how .sketch { float: none; width: 170px; margin: 14px 0 0; }
   /* the one-line summary a reviewer should take from each entry */
   .mini { margin-left: 4px; font-family: var(--f-hand); font-size: 17px; color: var(--red); }
-  .gist { max-width: 60ch; margin: 0 0 8px; padding-left: 12px; border-left: 2.5px solid var(--red); font-family: var(--f-head); font-style: italic; font-size: 20px; line-height: 1.35; color: var(--ink); }
   .go.small { margin-top: 0; font-size: 17px; }
   /* what I bring: a kit list grouped by kind */
-  .kit-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 40px; }
-  .kit-group h3 { margin: 10px 0 4px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 30px; color: var(--red); }
-  .kit-group ul { margin: 0; padding: 0; list-style: none; }
-  .kit-group li { position: relative; padding: 5px 0 5px 20px; border-bottom: 1px dashed rgba(43, 33, 24, .22); font-size: 17px; line-height: 1.35; }
-  .kit-group li::before { content: ""; position: absolute; left: 2px; top: .85em; width: 10px; height: 2px; background: var(--ink-2); transform: rotate(-12deg); }
-  .kit-group li i { margin-left: 6px; font-family: 'IM Fell English SC', serif; font-style: normal; font-size: 15px; letter-spacing: .04em; color: var(--blue); white-space: nowrap; }
   /* languages and frameworks: one row per language, its frameworks, how long, and where in the journal */
-  .kit-tools { margin: 4px 0 18px; }
-  .kit-tools h3 { margin: 6px 0 6px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 30px; color: var(--red); }
-  .kit-tools .tool { display: grid; grid-template-columns: 130px minmax(0, 1fr) 72px 92px; gap: 14px; align-items: baseline; padding: 7px 0; border-bottom: 1px dashed rgba(43, 33, 24, .22); font-size: 17px; line-height: 1.4; }
-  .kit-tools b { font-weight: 600; }
-  .kit-tools em { font-family: var(--f-hand); font-style: normal; font-size: 21px; color: var(--ink-2); white-space: nowrap; }
-  .kit-tools i { font-family: 'IM Fell English SC', serif; font-style: normal; font-size: 15px; letter-spacing: .04em; color: var(--blue); text-align: right; white-space: nowrap; }
-  html[data-read="easy"] .kit-tools h3 { font-size: 22px; }
-  html[data-read="easy"] .kit-tools em { font-size: 16px; }
-  @media (max-width: 700px) { .kit-tools .tool { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; } .kit-tools .tool span { grid-column: 1 / -1; grid-row: 2; } .kit-tools .tool i { display: none; } }
   /* skills: four ink dots for the level (legend on the page), then the years */
   .lv { display: inline-flex; gap: 4px; flex: none; }
   .lv i { width: 10px; height: 10px; border: 1.6px solid rgba(43, 33, 24, .55); border-radius: 50%; }
@@ -297,18 +274,8 @@
   .gl-y small { font-family: var(--f-body); font-size: 13.5px; }
   .gl-spoken { margin: 12px 0 0; font-size: 16.5px; }
   .glance .lv-legend { margin-top: 12px; }
-  .gl-more { margin: 4px 0 0; color: var(--pencil); font-size: 22px; }
-  .skills { columns: 2; column-gap: 46px; }
-  .area { break-inside: avoid; margin-bottom: 18px; }
-  .area h3 { margin: 6px 0 4px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--red); }
-  .sk { display: grid; grid-template-columns: minmax(0, 1fr) auto 62px; gap: 10px; align-items: center; padding: 5px 0; border-bottom: 1px dashed rgba(43, 33, 24, .2); font-size: 15.5px; line-height: 1.3; }
-  .sk b { font-weight: 600; }
-  .sk small { color: var(--ink-2); font-size: 13.5px; }
-  .sk-y { font-family: var(--f-hand); font-size: 17px; text-align: right; color: var(--ink-2); white-space: nowrap; }
-  .sk-spoken { margin: 0; font-size: 15.5px; }
-  html[data-read="classic"] .gl-y, html[data-read="classic"] .sk-y { font-size: 24px; }
+  html[data-read="classic"] .gl-y { font-size: 24px; }
   html[data-read="classic"] .glance-head h2 { font-size: 44px; }
-  html[data-read="classic"] .area h3 { font-size: 32px; }
   @media (max-width: 860px) { .skills { columns: 1; } }
   @media (max-width: 700px) {
     .gl-row { grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; }
@@ -318,15 +285,10 @@
   }
   /* working with me: a motto in my own hand, then short notes with one true example each */
   .motto { max-width: 34ch; margin: 6px 0 22px; padding: 0; transform: rotate(-1.2deg); color: var(--red); font-size: 30px; line-height: 1.25; }
-  .human-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 40px; }
-  .hnote h3 { margin: 10px 0 2px; font-family: var(--f-body); font-weight: 600; font-size: 19px; }
-  .hnote p { margin: 0; color: var(--ink); font-size: 16.5px; line-height: 1.5; }
-  .quote-slot { margin: 22px 0 0; padding: 18px; border: 2px dashed rgba(43, 33, 24, .3); text-align: center; }
-  .quote-slot .hand { color: var(--pencil); font-size: 22px; }
   html[data-read="classic"] .motto { font-size: 40px; }
-  @media (max-width: 700px) { .human-grid { grid-template-columns: 1fr; } .motto { font-size: 25px; } }
-  /* field reports: an index card pinned under the ribbons, for readers who only want the highlights */
-  .quick { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 2px; width: 190px; margin: 18px 0 0 -6px; padding: 18px 14px 20px 18px; transform: rotate(var(--qa, 1.2deg)); transform-origin: 50% 12px; will-change: transform; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .45)); }
+  @media (max-width: 700px) { .motto { font-size: 25px; } }
+  /* projects: an index card pinned under the ribbons, for readers who only want the highlights */
+  .quick { position: relative; isolation: isolate; display: flex; flex-direction: column; gap: 2px; width: clamp(190px, calc(50vw - 454px), 232px); margin: 18px 0 0 -6px; padding: 18px 14px 20px 18px; transform: rotate(var(--qa, 1.2deg)); transform-origin: 50% 12px; will-change: transform; filter: drop-shadow(0 6px 6px rgba(0, 0, 0, .45)); }
   /* the paper: yellowed, foxed, a coffee ring, a faded crease, ruled lines and a torn bottom edge */
   .quick::after {
     content: ""; position: absolute; inset: 0; z-index: -1;
@@ -349,22 +311,43 @@
   .quick a b { font-family: var(--f-body); font-weight: 600; font-size: 14.5px; }
   .quick a small { display: block; color: var(--ink-2); font-size: 12.5px; }
   .quick a:hover b, .quick a:focus-visible b { color: var(--red); text-decoration: underline; text-underline-offset: 2px; }
-  /* What I bring: one row per level, the dots and level on the left, the skills as a list, the year on the right */
-  /* What I bring: two columns, each row a small line with the level and year, then the skills across the full column */
-  .kit .skills { columns: 2; column-gap: 44px; }
-  .kit .area { margin-bottom: 14px; }
-  .lvrow { padding: 6px 0 7px; border-bottom: 1px dashed rgba(43, 33, 24, .2); font-size: 15.5px; line-height: 1.4; break-inside: avoid; }
-  .lvrow .lvw { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
-  .lvrow .lvw em { font-family: var(--f-hand); font-style: normal; font-size: 15px; color: var(--ink-2); }
-  .lvrow .sk-y { margin-left: auto; font-size: 15px; }
-  .lvrow .lvl-list { display: block; color: var(--ink); }
+  /* the CVs: four luggage tags on a twine under the card, and a small envelope for the e-mail */
+  .post { display: flex; flex-direction: column; width: 190px; margin: 14px 0 0 -2px; }
+  .post > .hand { color: #E9D7AE; font-size: 22px; line-height: 1.1; transform: rotate(-2deg); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+  .post .line { position: relative; height: 82px; perspective: 420px; }
+  .twine { position: absolute; left: 0; top: 0; width: 100%; height: 24px; overflow: visible; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .45)); }
+  .twine path { fill: none; stroke: #C9A66B; stroke-width: 2; stroke-dasharray: 3 1.2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .hang { position: absolute; left: calc(var(--x) - 20px); top: calc(var(--y) + var(--len)); width: 40px; height: 50px; color: var(--ink); text-decoration: none; transform: rotate(var(--r)); transform-origin: 50% calc(-1 * var(--len)); will-change: transform; filter: drop-shadow(0 4px 3px rgba(0, 0, 0, .45)); }
+  .hang::before { content: ""; position: absolute; left: 50%; top: calc(-1 * var(--len)); width: 1.5px; height: calc(var(--len) + 8px); margin-left: -.75px; background: #C9A66B; }
+  .hang .tg { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 6px; clip-path: polygon(30% 0, 70% 0, 100% 18%, 100% 100%, 0 100%, 0 18%); background: radial-gradient(circle at 50% 8px, transparent 0 2.5px, rgba(80, 55, 20, .6) 3px 4.5px, transparent 5px), var(--noise), #E3C58C; transition: background-color 160ms ease; }
+  .hang.sl .tg { background: radial-gradient(circle at 50% 8px, transparent 0 2.5px, rgba(80, 55, 20, .6) 3px 4.5px, transparent 5px), var(--noise), #D9B98F; }
+  .hang b { font-family: var(--f-hand); font-weight: 400; font-size: 21px; line-height: 1; color: var(--blue); }
+  .hang.sl b { color: var(--red); }
+  .hang small { font-size: 11.5px; line-height: 1.1; color: var(--ink-2); }
+  .hang:hover .tg, .hang:focus-visible .tg { background-color: #F0D9A6; }
+  .hang:hover small, .hang:focus-visible small { color: var(--ink); text-decoration: underline; }
+  .env { position: relative; display: flex; flex-direction: column; margin-top: 6px; padding: 9px 40px 10px 12px; transform: rotate(-1.5deg); background: var(--noise), #F4EAD2; box-shadow: 0 6px 10px rgba(0, 0, 0, .4); color: var(--ink); text-decoration: none; transition: transform 220ms var(--ease-out); }
+  /* a stamp in the corner, with a wavy postmark running off it */
+  .env::before { content: ""; position: absolute; top: 7px; right: 8px; width: 20px; height: 24px; background: linear-gradient(160deg, #B3473A, #6E1F1A); border: 2px dotted #F4EAD2; outline: 1px solid rgba(110, 31, 26, .45); transform: rotate(4deg); }
+  .env::after { content: ""; position: absolute; top: 12px; right: 22px; width: 30px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(43, 33, 24, .35); transform: rotate(-12deg); }
+  .env:hover, .env:focus-visible { transform: rotate(0) translateY(-2px); }
+  .env .hand { color: var(--red); font-size: 21px; line-height: 1.05; }
+  .env .addr { margin-top: 2px; font-size: 12.5px; letter-spacing: .01em; border-bottom: 1px solid currentColor; align-self: flex-start; }
+  .post { position: relative; }
+  .post .copy { position: absolute; right: 2px; bottom: -22px; padding: 0 4px; border: 0; color: #D8C59E; font-size: 16px; text-decoration: underline dashed; text-underline-offset: 3px; transform: rotate(-1deg); }
+  .post .copy:hover { color: #F4E9D0; }
+  /* What I bring: two columns, one short line per area, then working with me */
+  .kit-short { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 40px; }
+  .ks h3 { margin: 6px 0 0; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 26px; color: var(--red); }
+  .ks p { margin: 0; padding-bottom: 8px; border-bottom: 1px dashed rgba(43, 33, 24, .2); font-size: 16.5px; line-height: 1.4; }
+  .with-me { margin-top: 34px; }
+  .with-me h3 { margin: 0 0 6px; transform: rotate(-1.5deg); transform-origin: left; font-family: var(--f-hand); font-weight: 400; font-size: 30px; color: var(--red); }
+  .with-me .motto { max-width: none; margin-bottom: 14px; color: var(--ink-2); font-size: 24px; }
+  .traits { margin: 0; padding: 0; list-style: none; }
+  .traits li { margin-bottom: 6px; }
+  .traits b { font-weight: 600; }
+  @media (max-width: 700px) { .kit-short { grid-template-columns: 1fr; } }
   @media (max-width: 860px) { .kit .skills { columns: 1; } }
-  /* field notes on fieldbuses: a squared notebook page */
-  .sheet.notes .paper { background: linear-gradient(rgba(44, 74, 114, .08) 1px, transparent 1px) 0 0 / 28px 28px, linear-gradient(90deg, rgba(44, 74, 114, .08) 1px, transparent 1px) 0 0 / 28px 28px, radial-gradient(ellipse 115% 95% at 50% 50%, transparent 58%, var(--edge) 100%), var(--noise), var(--paper-2); }
-  .proto { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px dashed rgba(43, 33, 24, .25); }
-  .proto .pname { transform: rotate(-2deg); font-family: var(--f-hand); font-size: 30px; line-height: 1; color: var(--blue); }
-  .proto p { margin: 0; max-width: 64ch; }
-  .proto .circled { font-size: 24px; margin-left: 4px; }
   /* treasure maps of how each system fits together */
   .map { margin: 10px 0 6px; }
   .map svg { display: block; width: 100%; height: auto; }
@@ -388,13 +371,10 @@
   .photo.tall img { aspect-ratio: 9 / 16; }
   .photo.slot .img { background: repeating-linear-gradient(45deg, rgba(43, 33, 24, .06) 0 6px, transparent 6px 12px), #EFE6D2; filter: none; outline: 2px dashed rgba(43, 33, 24, .3); outline-offset: -8px; }
   .viewer .big img { display: block; max-width: 100%; max-height: calc(100vh - 120px); margin: 0 auto; }
-  @media (max-width: 700px) { .kit-grid { grid-template-columns: 1fr; } .proto { grid-template-columns: 1fr; gap: 4px; } .photo.tall { width: 46%; } }
+  @media (max-width: 700px) { .photo.tall { width: 46%; } }
   .journal.filtered .entry:not(.match) { opacity: .28; filter: grayscale(1) blur(.4px); }
 
   /* a pencil sketch beside the recipe editor entry */
-  .sketch { float: right; width: 190px; margin: 6px 0 8px 22px; transform: rotate(2deg); color: var(--pencil); }
-  .sketch svg { width: 100%; height: auto; filter: url(#rough); }
-  .sketch figcaption { margin-top: -4px; text-align: center; font-family: var(--f-hand); font-size: 23px; }
 
   /* the scrap note pinned across a page: the switch to agents */
   .scrap { position: relative; max-width: 470px; margin: 30px auto 30px; padding: 22px 26px 20px; transform: rotate(-2.2deg); background: var(--noise), #F5ECD3; box-shadow: 0 6px 12px rgba(0, 0, 0, .25); clip-path: polygon(0 4%, 7% 0, 18% 3%, 31% 0, 46% 2%, 60% 0, 74% 3%, 88% 0, 100% 2%, 99% 30%, 100% 62%, 98% 100%, 82% 97%, 66% 100%, 50% 96%, 34% 100%, 18% 97%, 4% 100%, 1% 70%, 0 40%); }
@@ -452,21 +432,8 @@
   .treasure.open .sparks path:nth-child(2) { animation-delay: .4s; } .treasure.open .sparks path:nth-child(3) { animation-delay: .8s; } .treasure.open .sparks path:nth-child(4) { animation-delay: 1.2s; }
   @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
   .loot { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 4px; }
-  .letter-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 18px; }
-  .letter { position: relative; display: flex; flex-direction: column; align-items: center; width: min(340px, 86vw); padding: 104px 20px 20px; transform: rotate(-1.5deg); background: linear-gradient(to bottom right, transparent 49.6%, rgba(43, 33, 24, .2) 50%, transparent 50.6%) top left / 50% 72px no-repeat, linear-gradient(to bottom left, transparent 49.6%, rgba(43, 33, 24, .2) 50%, transparent 50.6%) top right / 50% 72px no-repeat, var(--noise), #f4ead2; border: 1px solid rgba(43, 33, 24, .3); box-shadow: 0 10px 18px rgba(0, 0, 0, .28); color: var(--ink); text-decoration: none; transition: transform 220ms var(--ease-out), box-shadow 220ms ease; }
-  .letter:hover { transform: rotate(0) translateY(-4px); box-shadow: 0 16px 26px rgba(0, 0, 0, .3); }
-  .letter .wax { position: absolute; top: 46px; left: 50%; width: 48px; height: 48px; margin-left: -24px; border-radius: 47% 53% 50% 50% / 52% 46% 54% 48%; background: radial-gradient(circle at 36% 30%, #d95a47, #a52a1f 45%, #5a110b); box-shadow: 0 3px 5px rgba(0, 0, 0, .35), inset 0 0 0 5px rgba(60, 8, 4, .35); color: rgba(60, 8, 4, .85); font-family: var(--f-title); font-size: 24px; line-height: 48px; text-shadow: 0 1px 0 rgba(255, 170, 150, .4); }
-  .letter .hand { margin-top: 0; color: var(--red); font-size: 26px; line-height: 1; }
-  .letter .addr { margin-top: 6px; font-family: var(--f-head); font-size: 20px; border-bottom: 1.5px solid currentColor; }
   .copy { padding: 4px 10px; border: 1.5px dashed rgba(43, 33, 24, .45); border-radius: 4px; background: none; color: var(--ink-2); font-size: 18px; cursor: pointer; transform: rotate(2deg); }
   .copy:hover { color: var(--red); border-color: var(--red); }
-  .loot-note { margin: 18px 0 0; color: var(--pencil); font-size: 22px; transform: rotate(-1.5deg); }
-  .cv-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 14px; }
-  .cvtag { position: relative; display: flex; flex-direction: column; justify-content: center; width: 150px; min-height: 76px; padding: 10px 10px 10px 32px; clip-path: polygon(16px 0, 100% 0, 100% 100%, 16px 100%, 0 calc(100% - 16px), 0 16px); background: radial-gradient(circle at 17px 50%, var(--paper) 0 5px, rgba(80, 55, 20, .55) 5.5px 6.5px, transparent 7px), var(--noise), #e3c58c; color: var(--ink); text-align: left; text-decoration: none; transform: rotate(var(--r, -2deg)); transform-origin: 17px 50%; transition: transform 260ms cubic-bezier(.3, 1.6, .5, 1); }
-  .cvtag:nth-child(2) { --r: 1.5deg; } .cvtag:nth-child(3) { --r: -1deg; } .cvtag:nth-child(4) { --r: 2.5deg; }
-  .cvtag:hover { transform: rotate(calc(var(--r, -2deg) - 6deg)); }
-  .cvtag b { font-family: var(--f-head); font-weight: 600; font-size: 17px; line-height: 1.2; }
-  .cvtag small { color: var(--ink-2); font-size: 13.5px; }
   .coins-row { display: flex; gap: 22px; margin-top: 14px; }
   .coin { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #fff1b8, #e3b53e 38%, #a77a14 75%, #6e4f0a); box-shadow: inset 0 0 0 4px rgba(110, 79, 10, .55), inset 0 0 0 7px rgba(255, 235, 160, .35), 0 6px 10px rgba(0, 0, 0, .35); color: #4b3506; font-family: var(--f-title); font-size: 15px; text-decoration: none; text-shadow: 0 1px 0 rgba(255, 240, 190, .6); transition: transform 240ms cubic-bezier(.3, 1.6, .5, 1); }
   .coin:hover { transform: translateY(-4px) rotate(-10deg); }
@@ -544,32 +511,23 @@
   html[data-read="easy"] body { font-size: 18px; line-height: 1.68; }
   html[data-read="easy"] .entry h3 { font-family: var(--f-body); font-weight: 600; font-size: 22px; line-height: 1.3; letter-spacing: -.005em; }
   html[data-read="easy"] .entry h3 time { font-size: 18px; font-weight: 400; }
-  html[data-read="easy"] .gist { font-family: var(--f-body); font-size: 18px; line-height: 1.5; }
-  html[data-read="easy"] .how li { font-family: var(--f-body); font-style: normal; font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
   html[data-read="easy"] .chapter-intro, html[data-read="easy"] .report-sum, html[data-read="easy"] .role { font-family: var(--f-body); }
   html[data-read="easy"] .chapter-intro { font-size: 17px; }
   html[data-read="easy"] .report-sum { font-size: 19.5px; }
   html[data-read="easy"] .role { font-size: 22px; }
   html[data-read="easy"] .report h3 { font-family: var(--f-body); font-weight: 600; font-size: 24px; }
-  html[data-read="easy"] .kit-group li { font-size: 16px; }
-  html[data-read="easy"] .proto p { font-size: 17px; }
   /* Kalam runs larger than Reenie Beanie, so the handwritten sizes come down */
-  html[data-read="easy"] .lbl { font-size: 17px; }
   html[data-read="easy"] .label { font-size: 26px; }
   html[data-read="easy"] .chapter-head .when { font-size: 22px; }
   html[data-read="easy"] .circled { font-size: 19px; padding: 3px 12px 1px; }
-  html[data-read="easy"] .proto .circled { font-size: 17px; }
   html[data-read="easy"] .back { font-size: 21px; }
   html[data-read="easy"] .report-kind { font-size: 22px; }
   html[data-read="easy"] .where { font-size: 20px; }
   html[data-read="easy"] .scrap .hand { font-size: 21px; line-height: 1.35; }
   html[data-read="easy"] .sticky .hand { font-size: 21px; }
-  html[data-read="easy"] .kit-group h3 { font-size: 22px; }
-  html[data-read="easy"] .proto .pname { font-size: 21px; }
   html[data-read="easy"] .photo .cap { font-size: 15px; }
   html[data-read="easy"] .viewer .big .cap { font-size: 20px; }
   html[data-read="easy"] .x-page h2 { font-size: 46px; }
-  html[data-read="easy"] .sketch figcaption { font-size: 15px; }
   html[data-read="easy"] .map .il { font-size: 19px; }
   html[data-read="easy"] .map .rl { font-size: 15px; }
   html[data-read="easy"] .map .rl.small { font-size: 13px; }
@@ -579,7 +537,6 @@
   html[data-read="easy"] .report-meta .hand { font-size: 20px !important; }
   /* sharp text: pages lie straight, so text is never drawn at an angle */
   html[data-read="easy"] .sheet { transform: none; }
-  html[data-read="easy"] .how li { color: var(--ink); }
   /* spicier wear: burnt edges, a crease pair and margin ink spatters on every page, placed per page by script */
   html[data-theme="explorer"] { --edge: rgba(105, 62, 18, .42); }
   .paper::before {
@@ -613,6 +570,12 @@
     .ribbons-in { position: static; flex-direction: row; flex-wrap: wrap; gap: 6px; margin: 26px 0 0; }
     .quick { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 18px; width: 100%; margin: 12px 0 0; transform: none !important; }
     .quick .hand { width: 100%; }
+    .post { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 4px 22px; width: 100%; margin: 14px 0 0; }
+    .post > .hand { width: 100%; }
+    .post .line { width: 190px; }
+    .hang { transform: rotate(var(--r)) !important; }
+    .env { margin-top: 10px; }
+    .post .copy { position: static; align-self: flex-end; }
     .ribbon { width: auto; margin: 0; padding: 6px 22px 6px 12px; transform: none; clip-path: polygon(0 0, 100% 0, 92% 50%, 100% 100%, 0 100%); }
     .ribbon[aria-pressed="true"], .ribbon[aria-pressed="true"]:hover { transform: translateY(-4px); }
     .ribbon:hover { transform: translateY(-1px); }
@@ -622,13 +585,11 @@
     .sheet { padding: 48px 22px 54px 52px; }
     .trail { width: 50px; }
     .where, .compass, .note { display: none; }
-    .sketch { float: none; width: 170px; margin: 6px auto 4px; }
     .sticky { float: none; width: auto; margin: 0 0 20px; }
     .chapter-head { flex-direction: column; align-items: flex-start; gap: 4px; }
     .entry h3 { flex-direction: column; gap: 0; }
     .photo { width: 100%; }
     .photos { grid-template-columns: 1fr; }
-    .entry-body { grid-template-columns: 1fr; gap: 4px; }
   }
   /* torn paper edges reach a little past the column; they must never make the page scroll sideways */
   html, body { overflow-x: clip; }
@@ -637,7 +598,6 @@
     .trail .ship { transform: scale(.6); }
     .trail .pin { transform: scale(.85); }
     .report-title { font-size: calc(36px * var(--title-size)); }
-    .letter { width: min(340px, 100%); }
     .chapter-head .when { white-space: normal; }
     .built { font-size: 15px; }
     .built th { font-size: 16px; }
@@ -653,6 +613,8 @@
 
   }
 </style>
+<!-- visitor stats: GoatCounter, without cookies. It skips localhost, so the local preview never counts -->
+<script data-goatcounter="https://realgregor.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -714,13 +676,27 @@
         <button type="button" class="ribbon" data-f="SW" aria-pressed="false">Programska oprema<span class="n"></span></button>
         <button type="button" class="ribbon" data-f="PLC" aria-pressed="false">Avtomatizacija<span class="n"></span></button>
         <button type="button" class="ribbon" data-f="GxP" aria-pressed="false">Farmacija<span class="n"></span></button>
-        <nav class="quick" aria-label="Pod drobnogledom">
-          <span class="hand">Pod drobnogledom</span>
-          <a href="#case3"><b>Laboratorijski robot</b><small>programska oprema, PLC, vid</small></a>
-          <a href="#case"><b>Platforma za recepture</b><small>urejevalnik, nato prenova</small></a>
-          <a href="#case2"><b>SaaS za beleženje časa</b><small>lastni izdelek</small></a>
-          <a href="#case4"><b>Gradnik za naročanje</b><small>v ekipi</small></a>
+        <nav class="quick" aria-label="Moji projekti">
+          <span class="hand">Moji projekti</span>
+          <a href="#case3"><b>Laboratorijski robot</b><small>TypeScript, C#, PLC, Python</small></a>
+          <a href="#case"><b>Platforma za recepture</b><small>C#, WPF, ASP.NET, SQL Server</small></a>
+          <a href="#case5"><b>WebSCADA, danes EVA</b><small>C#, .NET, SignalR, Nuxt, Konva</small></a>
+          <a href="#case2"><b>SaaS za beleženje časa</b><small>C#, .NET 10, Nuxt, PostgreSQL</small></a>
+          <a href="#case4"><b>Gradnik za naročanje</b><small>JavaScript, spletne komponente</small></a>
         </nav>
+        <!-- the CVs hang from a twine and swing as the journal scrolls; the letter sits under them -->
+        <div class="post">
+          <span class="hand">Vzemi moj CV</span>
+          <div class="line">
+            <svg class="twine" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M2,4 Q100,18 198,4"/></svg>
+            <a class="hang" style="--x:12.5%;--y:7px;--len:8px;--r:-3deg" href="cv/Gregor-Bucar-CV-short-EN.pdf" download data-goatcounter-click="cv-en-short" title="Življenjepis v angleščini, 2 strani"><span class="tg"><b>EN</b><small>kratek</small></span></a>
+            <a class="hang" style="--x:37.5%;--y:10.5px;--len:16px;--r:2deg" href="cv/Gregor-Bucar-CV-long-EN.pdf" download data-goatcounter-click="cv-en-long" title="Življenjepis v angleščini, vsi projekti"><span class="tg"><b>EN</b><small>dolg</small></span></a>
+            <a class="hang sl" style="--x:62.5%;--y:10.5px;--len:10px;--r:-1.5deg" href="cv/Gregor-Bucar-CV-short-SL.pdf" download data-goatcounter-click="cv-sl-short" title="Življenjepis v slovenščini, kratek"><span class="tg"><b>SL</b><small>kratek</small></span></a>
+            <a class="hang sl" style="--x:87.5%;--y:7px;--len:20px;--r:3deg" href="cv/Gregor-Bucar-CV-long-SL.pdf" download data-goatcounter-click="cv-sl-long" title="Življenjepis v slovenščini, dolg"><span class="tg"><b>SL</b><small>dolg</small></span></a>
+          </div>
+          <a class="env" id="mail" href="mailto:gregor.bucar@gmail.com" data-goatcounter-click="email"><span class="hand">Piši mi</span><span class="addr">gregor.bucar@gmail.com</span></a>
+          <button class="copy hand" type="button" id="copyMail" data-copy="gregor.bucar@gmail.com">kopiraj naslov</button>
+        </div>
       </div>
     </div>
     <p class="vh" id="filterLive" aria-live="polite"></p>
@@ -734,22 +710,16 @@
         <!-- glance:start -->
         <div class="glance">
           <div class="glance-head"><h2>Na kratko</h2><span class="hand">kako dobro in kako dolgo</span><svg class="compass" viewBox="-50 -50 100 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2" style="filter:url(#rough)"><circle r="44"/><circle r="38" stroke-dasharray="2 3"/><path d="M0,-46 L5,0 L0,46 L-5,0 Z M-46,0 L0,5 L46,0 L0,-5 Z" fill="currentColor" fill-opacity=".15"/><path d="M-30,-30 L3,-3 M30,30 L-3,3 M30,-30 L3,-3 M-30,30 L-3,3"/></g><text y="-30" text-anchor="middle" font-family="IM Fell English SC" font-size="11" fill="currentColor">N</text></svg></div>
-          <div class="gl-row"><span class="gl-n"><b>C# in .NET</b><small>WPF, WinUI 3, ASP.NET Core, EF Core, SignalR</small></span><span class="gl-lv"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em></span><span class="gl-y">od 2018<small>8 let</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Namizne aplikacije z MVVM</b><small>aplikacija za procesno bazo podatkov z urejevalnikom receptur, ki jo uporablja več sto obratov</small></span><span class="gl-lv"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em></span><span class="gl-y">od 2020<small>6 let</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>C# in .NET</b><small>WPF z MVVM, ASP.NET Core, EF Core, SignalR</small></span><span class="gl-lv"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em></span><span class="gl-y">od 2018<small>8 let</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>TypeScript, Vue in Nuxt</b><small>storitve Node.js in operaterske spletne aplikacije</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>Testiranje in nameščanje</b><small>xUnit, Vitest, testi s pravim PLC, Docker, GitHub Actions</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>Umetna inteligenca in vid</b><small>modeli YOLO, OpenCV, razvoj s kodirnimi agenti</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2023<small>3 leta</small></span></div>
           <div class="gl-row"><span class="gl-n"><b>Programiranje PLC</b><small>objektni Structured Text v CODESYS, SCL v TIA Portal</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2024<small>2 leti</small></span></div>
+          <div class="gl-row"><span class="gl-n"><b>OPC UA in industrijska vodila</b><small>PROFINET, Modbus, EtherNet/IP, RS-232 in RS-485</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
           <div class="gl-row"><span class="gl-n"><b>Vodenje serij po ISA-88</b><small>faze v PLC in programska oprema receptur nad njimi</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2020<small>6 let</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>OPC UA in industrijska vodila</b><small>PROFINET, Modbus RTU in TCP, RS-232, RS-485, EtherNet/IP</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
           <div class="gl-row"><span class="gl-n"><b>Validacija GxP</b><small>URS, FS, SDS, OQ, kvalifikacija namestitve, revizijske sledi</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>TypeScript in Node.js</b><small>storitve Fastify med PLC in brskalnikom</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Vue in Nuxt</b><small>operaterske aplikacije in orodja za načrtovanje, s Tailwindom</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2023<small>3 leta</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Avtomatizirano testiranje</b><small>xUnit, Vitest, testi s pravim PLC (hardware-in-the-loop)</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2022<small>4 leta</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Nameščanje in gostovanje</b><small>Docker, GitHub Actions, Cloudflare, storitve Linux in Windows</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2024<small>2 leti</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Računalniški vid</b><small>učenje modelov YOLO, OpenCV, Python</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2023<small>3 leta</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Domača avtomatizacija</b><small>API-ji Home Assistant, lastna integracija, glas, WLED</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">2026<small>letos</small></span></div>
-          <div class="gl-row"><span class="gl-n"><b>Razvoj s kodirnimi agenti</b><small>Claude Code, s specifikacijo in načrtom, testi in mojim pregledom</small></span><span class="gl-lv"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em></span><span class="gl-y">od 2025<small>1 leto</small></span></div>
           <p class="gl-spoken"><b>Jeziki</b> slovenščina (materni jezik), angleščina (C2), <span style="white-space:nowrap">francoščina (A2 do B1)</span></p>
           <div class="lv-legend"><span><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Ekspertno</b> z njim že leta gradim in predajam produkcijske sisteme</span><span><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><b>Napredno</b> samostojno izdelujem produkcijske rešitve</span><span><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><b>Delovno</b> uporabljam ga v resničnih projektih, z dokumentacijo pri roki</span><span><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><b>Osnovno</b> nastavljeno ali uporabljeno nekajkrat</span></div>
-          <p class="gl-more hand">Vsa znanja po področjih so na naslednji strani.</p>
         </div>
         <!-- glance:end -->
         <div class="legend">
@@ -759,99 +729,30 @@
       </section>
     </div>
 
-    <!-- what I bring -->
+    <!-- what I bring, and working with me -->
     <div class="sheet-wrap">
       <span class="tape tl"></span><span class="tape tr"></span>
       <section class="sheet light kit" style="--tilt:.25deg">
         <header class="chapter-head"><h2><span class="num">Pred poglavji</span>Kaj prinašam</h2><span class="when">na kratko</span></header>
         <!-- kit:start -->
-        <div class="lv-legend"><span><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><b>Ekspertno</b> z njim že leta gradim in predajam produkcijske sisteme</span><span><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><b>Napredno</b> samostojno izdelujem produkcijske rešitve</span><span><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><b>Delovno</b> uporabljam ga v resničnih projektih, z dokumentacijo pri roki</span><span><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><b>Osnovno</b> nastavljeno ali uporabljeno nekajkrat</span></div>
-        <div class="skills">
-          <div class="area"><h3>Jeziki</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em><span class="sk-y">od 2018</span></span><span class="lvl-list">C#</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">TypeScript in JavaScript, Structured Text, SCL</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">Python, SQL</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y">od 2025</span></span><span class="lvl-list">C++ za ESP32</span></div>
-          </div>
-          <div class="area"><h3>.NET</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">WPF z MVVM in lastnimi kontrolami</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">WinUI 3, ASP.NET Core, Entity Framework Core, SignalR, gostujoče storitve in storitve Windows, Stateless, nadgradnje na .NET 8 in 10</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2018</span></span><span class="lvl-list">.NET MAUI, Blazor WebAssembly, WinForms, MediatR, FluentValidation</span></div>
-          </div>
-          <div class="area"><h3>Splet in aplikacije</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">Urejevalniki diagramov in platen</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">Vue 3, Nuxt, Tailwind CSS</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">Angular z NgRx in RxJS, AngularJS, React Native in Expo, Electron, razširitve za brskalnik, aplikacije v 4 do 10 jezikih</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y">2026</span></span><span class="lvl-list">React</span></div>
-          </div>
-          <div class="area"><h3>Arhitektura</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">REST API-ji, Node.js s Fastify, storitev za vsak modul stroja, sprotna komunikacija prek WebSocketov, SignalR in OPC UA, delo brez povezave in obnova po zrušitvi, vtičniki med izvajanjem, dogodkovni mehanizmi pravil, avtentikacija in varnost API-jev</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">Čista arhitektura in CQRS, večnajemniškost, OAuth in webhooki</span></div>
-          </div>
-          <div class="area"><h3>Načrtovalski vzorci</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l4" role="img" aria-label="Ekspertno"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><em>Ekspertno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">MVVM</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">Vbrizgavanje odvisnosti in obrnjen nadzor, stanjski avtomati, strategija, ukaz, tovarna, opazovalec, repozitorij, cevovod</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">Predlogna metoda, adapter, sestav, enota dela</span></div>
-          </div>
-          <div class="area"><h3>Podatki</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">SQL Server, PostgreSQL v produkciji</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">Časovne tabele, shranjene procedure, SQLite</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">MongoDB</span></div>
-          </div>
-          <div class="area"><h3>Industrijska avtomatizacija</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">CODESYS, objektni IEC 61131-3, ISA-88, odjemalci OPC UA, PROFINET, Modbus RTU, RS-232 in RS-485 z lastno serijsko knjižnico, alarmi in dogodki, simulacija PLC, upravljanje roke z igralnim ploščkom, servisni in operaterski zasloni</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">TIA Portal in S7-1500, OPC UA na strani PLC, EtherNet/IP, Modbus TCP, pogoni CiA-402, regulacija PID, Linux v realnem času, Raspberry Pi, PiXtend in ESP32, avtomatizacija stavb</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y">2026</span></span><span class="lvl-list">IO-Link, most alarmov za WinCC Unified</span></div>
-          </div>
-          <div class="area"><h3>Regulirano okolje (GxP)</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">Programska oprema za GMP, revizijske sledi, kvalifikacija namestitve, odobreni URS, FS, SDS, HDS in uporabniški priročniki, protokoli OQ in sledljivost zahtev</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">E-podpisi, Part 11, ALCOA+, GAMP 5</span></div>
-          </div>
-          <div class="area"><h3>Testiranje</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">xUnit, Vitest, integracijski testi, testi s pravim PLC (hardware-in-the-loop)</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">Playwright, Jest, Jasmine, NSubstitute, arhitekturni testi, analizatorji Roslyn</span></div>
-          </div>
-          <div class="area"><h3>Nameščanje in delovanje</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2022</span></span><span class="lvl-list">Docker in Compose, GitHub Actions, samodejno nameščanje z GHCR in Watchtowerjem, strežniki Linux na Raspberry Pi, nameščanje na več naprav prek SSH, storitve Windows pri strankah, GitHub Pages z lastnimi domenami, Cloudflare Tunnel, transakcijska e-pošta</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">Cloudflare Access in DNS, IIS, MSIX, namestitve brez interneta, Bitbucket Pipelines, Azure Key Vault, Loki, Grafana in Uptime Kuma, Tailscale in nftables, SMS prek modema GSM, šifrirane varnostne kopije, gradnja z Expo EAS</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y">2026</span></span><span class="lvl-list">Strežniki Hetzner v oblaku, Cloudflare Workers in Turnstile</span></div>
-          </div>
-          <div class="area"><h3>Domača avtomatizacija</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">2026</span></span><span class="lvl-list">API-ji Home Assistant, lastna integracija za Home Assistant, glas z Wyoming, Whisper in Piper, WLED</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">2026</span></span><span class="lvl-list">Postavitev Home Assistant, lokalne vtičnice Tuya, strežniki MCP, razsvetljava pisarn iz PLC v Home Assistant</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y">2026</span></span><span class="lvl-list">ESPHome</span></div>
-          </div>
-          <div class="area"><h3>Umetna inteligenca in vid</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">Učenje modelov YOLO, razvoj s kodirnimi agenti v Claude Code</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y">od 2023</span></span><span class="lvl-list">OpenCV, podatkovni nizi in označevanje v Roboflow, integracija LLM</span></div>
-          </div>
-          <div class="area"><h3>Delo z ljudmi</h3>
-            <div class="lvrow"><span class="lvw"><span class="lv l3" role="img" aria-label="Napredno"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><em>Napredno</em><span class="sk-y">od 2020</span></span><span class="lvl-list">Tehnično pisanje v angleščini in slovenščini, Git</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l2" role="img" aria-label="Delovno"><i class="on"></i><i class="on"></i><i></i><i></i></span><em>Delovno</em><span class="sk-y"></span></span><span class="lvl-list">Usposabljanje operaterjev pri strankah</span></div>
-            <div class="lvrow"><span class="lvw"><span class="lv l1" role="img" aria-label="Osnovno"><i class="on"></i><i></i><i></i><i></i></span><em>Osnovno</em><span class="sk-y"></span></span><span class="lvl-list">Mentorstvo dvema študentoma</span></div>
-          </div>
-          <div class="area"><h3>Jeziki, ki jih govorim</h3><p class="sk-spoken">slovenščina (materni jezik), angleščina (C2), <span style="white-space:nowrap">francoščina (A2 do B1)</span></p></div>
+        <div class="kit-short">
+          <div class="ks"><h3>Programska oprema</h3><p>C# in .NET z WPF, ASP.NET Core, EF Core in SignalR, SQL Server in PostgreSQL</p></div>
+          <div class="ks"><h3>Splet</h3><p>TypeScript, Node.js s Fastify, Vue in Nuxt, Angular, Tailwind CSS</p></div>
+          <div class="ks"><h3>Avtomatizacija</h3><p>CODESYS in TIA Portal, ISA-88, OPC UA, PROFINET, Modbus, EtherNet/IP, RS-232 in RS-485</p></div>
+          <div class="ks"><h3>Farmacija (GxP)</h3><p>Programska oprema za GMP, revizijske sledi, URS, FS, SDS, OQ in kvalifikacija namestitve</p></div>
+          <div class="ks"><h3>Testiranje in nameščanje</h3><p>xUnit, Vitest, Playwright, testi s pravim PLC, Docker, GitHub Actions, storitve Linux in Windows</p></div>
+          <div class="ks"><h3>Umetna inteligenca in vid</h3><p>Modeli YOLO, OpenCV, razvoj s kodirnimi agenti v Claude Code</p></div>
         </div>
         <!-- kit:end -->
-      </section>
-    </div>
-
-    <!-- working with me -->
-    <div class="sheet-wrap">
-      <span class="tape tl"></span><span class="tape tr"></span>
-      <section class="sheet light human" style="--tilt:-.3deg">
-        <header class="chapter-head"><h2><span class="num">Med vrsticami</span>Delo z mano</h2><span class="when">z mojimi besedami</span></header>
-        <blockquote class="motto hand">Najbolj me veseli izziv in zadovoljstvo, ko ga rešim. Všeč mi je, kadar ima glava dovolj dela.</blockquote>
-        <div class="human-grid">
-          <div class="hnote"><h3>Napredek, ki ga vidim</h3><p>Najraje delam tam, kjer je napredek fizičen, recimo roka, ki se premakne, ali pralni stroj, ki izvede cikel.</p></div>
-          <div class="hnote"><h3>Na voljo, ko šteje</h3><p>Na voljo sem za podporo, tudi v poznih urah. Od oktobra 2026 se pod mentorstvom pridružujem Tracovi ekipi za podporo.</p></div>
-          <div class="hnote"><h3>Poučevanje me veseli</h3><p>Mentoriram dva študenta in imam za seboj usposabljanje osebja farmacevtske stranke za programsko opremo receptur. Želim voditi več usposabljanj in delavnic.</p></div>
-          <div class="hnote"><h3>Novosti me ne plašijo</h3><p>Samo letos je na vrsto prišlo učenje okolja Siemens TIA Portal, pa tudi uvedba Linux jedra v realnem času na naših PLC-jih.</p></div>
-          <div class="hnote"><h3>Pogovarjam se z ljudmi okoli sistema</h3><p>Strežnike postavljam skupaj z IT-jem strank, operaterje pa usposabljam za delo s tem, kar razvijem.</p></div>
-          <div class="hnote"><h3>Radovednost že od šole</h3><p>V šoli so bila na sporedu tekmovanja iz matematike, fizike, kemije, biologije in računalništva. Danes se za zabavo ukvarjam z domačo avtomatizacijo.</p></div>
-          <div class="hnote"><h3>Pripravljenost na potovanja</h3><p>Imam vozniško dovoljenje B. Na zagone z veseljem potujem, za pravo delovno mesto pa se lahko tudi preselim.</p></div>
+        <div class="with-me">
+          <h3>Delo z mano</h3>
+          <blockquote class="motto hand">Najbolj me veseli izziv in zadovoljstvo, ko ga rešim. Novosti me ne plašijo, všeč pa mi je, kadar ima glava dovolj dela.</blockquote>
+          <ul class="traits">
+            <li><b>Napredek, ki ga vidim.</b> Najraje delam tam, kjer se nekaj premakne, recimo roka robota ali pralni stroj, ki izvede cikel.</li>
+            <li><b>Na voljo, ko šteje.</b> Na voljo sem za podporo, tudi v poznih urah.</li>
+            <li><b>Poučevanje me veseli.</b> Mentoriram dva študenta in usposabljam operaterje, ki uporabljajo moje rešitve.</li>
+          </ul>
         </div>
-        <div class="quote-slot"><span class="hand">besede sodelavca, še bodo dodane</span></div>
       </section>
     </div>
 
@@ -862,20 +763,17 @@
         <header class="chapter-head"><h2><span class="num">Poglavje I</span>Izobrazba</h2><span class="when">od 2015 do 2023</span></header>
         <article class="entry" data-area="PLC SW">
           <h3>Tehniška gimnazija, elektrotehnika in računalništvo <time>od 2015 do 2019</time></h3>
-          <p class="gist">Prvi stik z elektroniko in programiranjem.</p>
-          <p>Šolanje je potekalo na Šolskem centru Novo mesto, doma pa so nastali prvi programi v C#.</p>
+          <p>Šolski center Novo mesto, prvi stik z elektroniko in prvi programi v C#.</p>
           <div class="marks"><span class="tag plc">PLC</span><span class="tag sw">SW</span></div>
         </article>
         <article class="entry" data-area="SW">
           <h3>3. nagrada na državnem tekmovanju ACM v znanju računalništva <time>2018</time></h3>
-          <p class="gist">Algoritmi pod časovnim pritiskom, v konkurenci najboljših dijakov v državi.</p>
           <p>Rezultat je bil 6. mesto od 99 v 1. skupini in srebrno priznanje.</p>
           <div class="marks"><span class="tag sw">SW</span><a class="go small" href="https://rtk.ijs.si/2018/rezultati.html" target="_blank" rel="noopener">uradni rezultati</a></div>
         </article>
         <article class="entry" data-area="SW">
           <h3>Univerzitetni študij računalništva in informatike, FRI, Univerza v Ljubljani <time>od 2019 do 2023</time></h3>
-          <p class="gist">Diplomsko delo je ocenjeno z 10 od 10.</p>
-          <p><em>Načrt in izvedba decentraliziranega dnevnika za stavbe</em>, spletna aplikacija, ki podatke o stavbah hrani na grafu znanja OriginTrail.</p>
+          <p>Diplomsko delo o decentraliziranem dnevniku za stavbe je ocenjeno z 10 od 10.</p>
           <div class="marks"><span class="tag sw">SW</span><a class="go small" href="https://ucilnica.fri.uni-lj.si/pluginfile.php/201164/mod_resource/content/1/63190070-GREGOR%20BU%C4%8CAR-Na%C4%8Drt%20in%20izvedba%20decentraliziranega%20dnevnika%20za%20stavbe%20%281%29.pdf" target="_blank" rel="noopener">preberi diplomsko delo (PDF, v slovenščini)</a></div>
         </article>
       </section>
@@ -887,102 +785,30 @@
       <section class="sheet coffee" style="--tilt:-.35deg">
         <header class="chapter-head"><h2><span class="num">Poglavje II</span>Trac, študentska leta</h2><span class="when">od 2018 do 2024</span></header>
         <p class="chapter-intro">Študentsko delo v podjetju Trac v Šentjerneju, ki razvija avtomatizacijo in programsko opremo za farmacevtske obrate.</p>
-
-        <article class="entry" data-area="SW">
-          <h3>Prva produkcijska koda <time>od 2018 do 2021</time></h3>
-          <p class="gist">Učenje dela v skupni kodi ekipe, s testi od začetka.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj je bilo</span>Namizna orodja za Windows za Tracove projekte avtomatizacije, v Windows Forms in pozneje WPF.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>MVVM v WPF</li><li>pregled kode v ekipi</li></ul></div>
-          </div>
-        </article>
-
         <article class="entry" data-area="SW GxP">
           <h3>Urejevalnik receptur za proizvodnjo v serijah <time>od 2020 do 2025</time></h3>
-          <p class="gist">Zahteven vizualni urejevalnik, ki ga tehnologi uporabljajo vsak dan.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Tehnologi narišejo recepturo kot sekvenčni funkcijski diagram (SFC), obrat pa izvede točno to, na več sto namestitvah z več tisoč uporabniki.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>ponovno uporabna knjižnica za vmesnikom</li><li>osnovni razred vozlišča, zato vrste korakov prepišejo le tisto, kar je drugače</li><li>stara in nova vrednost v revizijski sledi za vsako spremembo</li></ul>
-              <figure class="sketch" aria-hidden="true">
-                <svg viewBox="0 0 120 150"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="35" y="6" width="50" height="22"/><rect x="38" y="9" width="44" height="16"/><path d="M60,28 V44 M48,44 H72 M60,44 V60"/><rect x="35" y="60" width="50" height="22"/><path d="M60,82 V92 M20,92 H100 M30,92 V104 M90,92 V104"/><rect x="8" y="104" width="44" height="20"/><rect x="68" y="104" width="44" height="20"/><path d="M30,124 V136 M90,124 V136 M20,136 H100"/><path d="M60,136 V148"/></g></svg>
-                <figcaption>receptura, kot jo narišejo tehnologi</figcaption>
-              </figure>
-            </div>
-          </div>
+          <p>Tehnologi narišejo recepturo kot diagram, obrat pa izvede točno to, na več sto namestitvah z več tisoč uporabniki.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span><a class="go small" href="#case">Preberi celo zgodbo</a></div>
         </article>
-
-        <article class="entry" data-area="SW">
-          <h3>Nadzorna plošča projektne pisarne <time>2022</time></h3>
-          <p class="gist">Celoten čelni del v Angularju, samostojno razvit.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Prikaže vsak projekt iz Teamworka skupaj z vrednostjo pogodbe, zaračunanim zneskom in fazo.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>štirje viri podatkov se naložijo vzporedno in odpovejo neodvisno drug od drugega</li><li>spreminjanje širine stolpcev kot tok RxJS</li></ul></div>
-          </div>
-        </article>
-
         <article class="entry" data-area="GxP PLC SW">
           <h3>Orodje za kvalifikacijo namestitve <time>od 2022 do 2026</time></h3>
-          <p class="gist">Namizna aplikacija in API, ki regulirani testni postopek preneseta s papirja v digitalno obliko, uporabljena na petih velikih projektih.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Prek OPC UA v živo preizkusi vsak signal PLC, beleži, kdo ga je preizkusil in ali je test uspel, ter natisne kvalifikacijska poročila.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag gxp">GxP</span><span class="tag plc">PLC</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>nova vrsta naprave je le en razred in ena predloga</li><li>časovne tabele hranijo vsak prejšnji poskus testa</li><li>opozorilo pred ročnim pisanjem v PLC med aktivnim zaklepom</li></ul></div>
-          </div>
+          <p>Namizna aplikacija in API, ki prek OPC UA v živo preizkusita vsak signal PLC in natisneta kvalifikacijska poročila, v uporabi na petih velikih projektih.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag gxp">GxP</span><span class="tag plc">PLC</span><span class="tag sw">SW</span></div>
         </article>
-
-        <article class="entry" data-area="SW">
-          <h3>Barski kiosk za božično zabavo <time>2022</time></h3>
-          <p class="gist">Enotedenski demo, ki je izvajalnik serij poganjal z gostovega zaslona na dotik.</p>
-          <p>Gostje so izbrali pijačo, aplikacija pa je prek SignalR zagnala recepturo. Celotna aplikacija v Blazor WebAssembly je moje delo.</p>
-          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><a class="go small" href="#case3">Več v zgodbi o robotu</a></div>
-        </article>
-
         <article class="entry" data-area="SW GxP">
           <h3>Programska oprema laboratorijskega robota za pripravo vzorcev <time>od 2023 do 2026</time></h3>
-          <p class="gist">Robne storitve v moji zasnovi in upravljanju, od spremenljivk PLC do operaterjevega zaslona.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Modularni robot, ki farmacevtske vzorce dozira, tehta, homogenizira in ekstrahira.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span></div>
-              <a class="go" href="#case3">Preberi celo zgodbo</a>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>eno skupno jedro za vseh šest modulov</li><li>vsak ukaz se preveri, preden se karkoli zapiše</li><li>agenti so se pridružili leta 2026</li></ul></div>
-          </div>
+          <p>Robne storitve od spremenljivk PLC do operaterjevega zaslona, za robota, ki farmacevtske vzorce dozira, tehta, homogenizira in ekstrahira.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><span class="tag gxp">GxP</span><a class="go small" href="#case3">Preberi celo zgodbo</a></div>
         </article>
-
         <article class="entry" data-area="SW">
           <h3>Iskanje epruvet s kamero <time>od 2023 do 2026</time></h3>
-          <p class="gist">Model za računalniški vid od učenja do storitve, ki teče brez nadzora.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Model na fotografiji stojala najde vsako epruveto, jo poveže z njenim mestom in loči odprte od zaprtih.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>slabe fotografije se zaradi preverjanja ostrine in osvetlitve posnamejo znova</li><li>kamera se ob napaki sama znova odpre</li></ul></div>
-          </div>
+          <p>Model YOLO, ki na fotografiji stojala najde vsako epruveto in loči odprte od zaprtih, kot storitev, ki teče brez nadzora.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><a class="go small" href="#case3">Preberi celo zgodbo</a></div>
         </article>
-
         <article class="entry" data-area="SW">
           <h3>Planer obremenitev <time>od 2023 do 2026</time></h3>
-          <p class="gist">Dejanski problem razporejanja, preveden v algoritem, ki prihrani okoli 5.200 € na leto.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Vsako nalogo načrtuje glede na ure vsakega človeka šest mesecev vnaprej in je nadomestil plačljivo orodje za 29 ljudi.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>razporejanje po dnevih glede na dejansko zmogljivost, najprej fiksni datumi</li><li>ponovno uporabno vedenje v Vue composables</li><li>tipiziran posrednik .NET, ki predpomni odgovore Teamworka</li></ul></div>
-          </div>
+          <p>Ure vsakega človeka načrtuje šest mesecev vnaprej. Nadomestil je plačljivo orodje za 29 ljudi in prihrani okoli 5.200 € na leto.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
         </article>
       </section>
     </div>
@@ -994,14 +820,8 @@
         <header class="chapter-head"><h2><span class="num">Poglavje III</span>Špica International</h2><span class="when">od septembra 2022 do maja 2023</span></header>
         <article class="entry" data-area="SW">
           <h3>SaaS za beleženje časa, od čelnega dela do zaledja <time>od 2022 do 2023</time></h3>
-          <p class="gist">Poslovni Angular in velika obstoječa koda, v okviru študentskega dela.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj je</span>Izdelek za beleženje časa za ekipe, sredi prehoda z AngularJS na sodobni Angular.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>akcije, učinki in selektorji NgRx za fasado</li><li>testi xUnit za vsako novo storitev</li></ul></div>
-          </div>
+          <p>Angular z NgRx in API v C#, sredi prehoda z AngularJS na sodobni Angular.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span></div>
         </article>
       </section>
     </div>
@@ -1011,73 +831,31 @@
       <span class="tape tl"></span><span class="tape tr"></span>
       <section class="sheet" style="--tilt:-.25deg">
         <header class="chapter-head"><h2><span class="num">Poglavje IV</span>Trac, samostojni projektni inženir</h2><span class="when">od junija 2024</span></header>
-        <p class="chapter-intro">Za farmacevtske stranke izdelujem celovito programsko opremo obratov, od programov PLC in povezav OPC UA do storitev .NET, spletnih storitev, operaterskih zaslonov in validacijske dokumentacije.</p>
-
-        <article class="entry" data-area="PLC">
-          <h3>Krmilniki robota za pripravo vzorcev <time>od 2024 do 2026</time></h3>
-          <p class="gist">Objektno usmerjena koda PLC v obsegu knjižnice, ki si jo deli sedem krmilnikov.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>PLC-stran istega robota na sedmih krmilnikih CODESYS, ki tečejo na Raspberry Pi.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag plc">PLC</span></div>
-              <a class="go" href="#case3">Preberi celo zgodbo</a>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>35 operacij razširja eno abstraktno osnovo</li><li>simulacijski krmilnik za preizkušanje brez strojne opreme</li><li>nekatere funkcije iz leta 2026 z agenti, šele ko je bil problem ročno razrešen</li></ul></div>
-          </div>
-        </article>
-
-        <aside class="scrap">
-          <span class="pin-dot"></span>
-          <p class="hand">Od konca leta 2025 aktivno uporabljam Claude Code, kjer pomaga in kjer to dovoljujejo predpisi. Nekaj kode še vedno napišem ročno, vse, kar napiše agent, pa pregledam. Pred tem mi je UI le odgovarjala na vprašanja.</p>
-        </aside>
-
+        <p class="chapter-intro">Za farmacevtske stranke izdelujem celovito programsko opremo obratov, od storitev .NET in spletnih storitev do OPC UA, PLC in validacijske dokumentacije.</p>
         <article class="entry" data-area="GxP SW PLC">
           <h3>Prenova platforme za proizvodnjo v serijah <time>2026</time></h3>
-          <p class="gist">Na napake odporen izvajalnik receptur za validiran sistem, preizkušen na pravem PLC.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Platforma, s katero farmacevtski obrati pišejo, odobravajo in izvajajo recepture, na novo zgrajena v .NET 10.</p>
-              <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag gxp">GxP</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
-              <a class="go" href="#case">Preberi celo zgodbo</a>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>stanjski avtomat za vsak korak recepture, zato se Hold, Stop in Abort povsod obnašajo enako</li><li>varno shranjeno stanje izvajanja, zato se po zrušitvi obnovi vsaka tekoča serija</li><li>najprej specifikacija, nato agenti, nato moj pregled</li></ul></div>
-          </div>
+          <p>Platforma, s katero obrati pišejo, odobravajo in izvajajo recepture, na novo zgrajena v .NET 10, tako da se po zrušitvi obnovi vsaka serija v teku.</p>
+          <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag gxp">GxP</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><a class="go small" href="#case">Preberi celo zgodbo</a></div>
         </article>
-
+        <aside class="scrap">
+          <span class="pin-dot"></span>
+          <p class="hand">Od konca leta 2025 uporabljam Claude Code, kjer pomaga in kjer to dovoljujejo predpisi, vse, kar napiše, pa pregledam.</p>
+        </aside>
+        <article class="entry" data-area="PLC">
+          <h3>Krmilniki robota za pripravo vzorcev <time>od 2024 do 2026</time></h3>
+          <p>Objektna koda PLC, ki si jo deli sedem krmilnikov CODESYS na Raspberry Pi. Linux jedro v realnem času je njihovo najslabšo zakasnitev zmanjšalo <span class="circled">301 µs → 94 µs</span>.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag plc">PLC</span><a class="go small" href="#case3">Preberi celo zgodbo</a></div>
+        </article>
         <article class="entry" data-area="PLC GxP">
           <h3>Programi PLC v Siemens TIA Portal <time>2026</time></h3>
-          <p class="gist">Dva projekta Siemens, oba v SCL na krmilnikih S7-1500.</p>
-          <p>Pri pralnem stroju za zabojnike IBC je moje delo sedem od osmih čistilnih operacij na podjetniški predlogi ISA-88. Pri obratu za čiste medije je projekt prenesen na nov most za elektronske zapise.</p>
+          <p>SCL na S7-1500, s sedmimi od osmih čistilnih operacij pralnega stroja za zabojnike IBC in z novim mostom za elektronske zapise v obratu za čiste medije.</p>
           <div class="marks"><span class="stamp checked">Ročno, preverjeno z UI</span><span class="tag plc">PLC</span><span class="tag gxp">GxP</span></div>
         </article>
-
         <article class="entry" data-area="PLC">
           <h3>Upravljanje poslovne stavbe podjetja <time>2026</time></h3>
-          <p class="gist">Razširitev obstoječega programa PLC stavbe s senzorji klime in nadzorom naprav.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Raspberry Pi s CODESYS prek PROFINET, Modbus RTU in Modbus TCP krmili prezračevanje, vodne zanke in razsvetljavo.</p>
-              <div class="marks"><span class="stamp checked">Ročno, preverjeno z UI</span><span class="tag plc">PLC</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>ena "potrditev" ponovno zažene le naprave v napaki</li><li>15-sekundno zadržanje po ponovnem zagonu, da počasna povezava ne izklopi črpalke</li></ul></div>
-          </div>
+          <p>Razširitev programa CODESYS v stavbi s senzorji klime in nadzorom naprav prek Modbusa in PROFINET.</p>
+          <div class="marks"><span class="stamp checked">Ročno, preverjeno z UI</span><span class="tag plc">PLC</span></div>
         </article>
-      </section>
-    </div>
-
-    <!-- field notes on fieldbuses -->
-    <div class="sheet-wrap">
-      <span class="tape tl"></span><span class="tape tr"></span>
-      <section class="sheet light notes" style="--tilt:.3deg">
-        <header class="chapter-head"><h2><span class="num">Beležke iz delavnice</span>Industrijska vodila in serijske povezave</h2><span class="when">moje delo na vsakem</span></header>
-        <div class="proto"><span class="pname">PROFINET</span><p>Servo pogoni Mitsubishi MR-J4 (CiA-402) na krmilnikih Raspberry Pi. Prehod na Linux jedro v realnem času je najslabšo zakasnitev zmanjšal <span class="circled">301 µs → 94 µs</span>.</p></div>
-        <div class="proto"><span class="pname">EtherNet/IP</span><p>Krmilniki koračnih motorjev SMC za osi robota.</p></div>
-        <div class="proto"><span class="pname">Modbus RTU</span><p>Senzorji klime in nadzor naprav na stavbnem vodilu ter rotacijsko prijemalo DH-Robotics.</p></div>
-        <div class="proto"><span class="pname">Modbus TCP</span><p>Obtočne črpalke v vodnih zankah stavbe.</p></div>
-        <div class="proto"><span class="pname">RS-232</span><p>Lasten gonilnik za analitsko tehtnico A&amp;D.</p></div>
-        <div class="proto"><span class="pname">RS-485</span><p>Hladilnik na lastni objektno usmerjeni knjižnici za serijsko komunikacijo.</p></div>
-        <div class="proto"><span class="pname">IO-Link</span><p>Instrumenti Endress+Hauser, Festo, GEMÜ in ifm.</p></div>
-        <div class="proto"><span class="pname">OPC UA</span><p>Povezava med vsakim PLC ter storitvami .NET in spletnimi storitvami.</p></div>
       </section>
     </div>
 
@@ -1086,66 +864,25 @@
       <span class="tape tl"></span><span class="tape tr"></span>
       <section class="sheet light" style="--tilt:.35deg">
         <header class="chapter-head"><h2><span class="num">Poglavje V</span>Lastne odprave</h2><span class="when">od leta 2024</span></header>
+        <article class="entry" data-area="SW PLC">
+          <h3>WebSCADA, danes EVA <time>od 2024 do 2026</time></h3>
+          <p>Nadzor požarnovarnostnih in stavbnih sistemov v brskalniku, ki ga razvija ekipa petih, pri čemer vodim razvoj prehoda in živih tlorisov, moje delo pa so tudi pravila, ki alarme spremenijo v SMS-e in ukaze.</p>
+          <div class="marks"><span class="stamp byhand">Ročno</span><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><a class="go small" href="#case5">Preberi celo zgodbo</a></div>
+        </article>
         <article class="entry" data-area="SW">
           <h3>SaaS za beleženje časa in izdajo računov <time>2026</time></h3>
-          <p class="gist">Lasten večnajemniški SaaS od zasnove in zaščite do rednih izdaj.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>Beleži čas po projektih in proračunih ter ga pretvori v ponudbe in račune.</p>
-              <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span></div>
-              <a class="go" href="#case2">Preberi celo zgodbo</a>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>čista arhitektura z ukazi in poizvedbami po funkcionalnostih</li><li>testi ustavijo gradnjo, dokler nova tabela ali končna točka ne loči strank</li><li>aplikacija za telefon deluje brez povezave in se sinhronizira pozneje</li></ul></div>
-          </div>
+          <p>Lasten večnajemniški SaaS od zasnove do rednih izdaj, od beleženja časa do ponudb in računov.</p>
+          <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span><a class="go small" href="#case2">Preberi celo zgodbo</a></div>
         </article>
         <article class="entry" data-area="SW">
           <h3>Platforma za spletno naročanje, v ekipi <time>2026</time></h3>
-          <p class="gist">Gradnik za naročanje, ki se vstavi v katero koli spletno stran.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj je</span>Spletno naročanje za dejavnosti s termini, kot so ambulante in brivnice.</p>
-              <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span></div>
-              <a class="go" href="#case4">Preberi celo zgodbo</a>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>ločen v Shadow DOM, zato ga slogi gostiteljske strani ne pokvarijo</li><li>prebere barve in pisave gostiteljske strani ter preveri kontrast</li></ul></div>
-          </div>
-        </article>
-        <article class="entry" data-area="SW PLC">
-          <h3>WebSCADA, danes EVA <time>od 2024 do 2026</time></h3>
-          <p class="gist">Prehod sprejema protokole kot vtičnike in nadzoruje tudi ob izpadu strežnika.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj je</span>Nadzor stavbnih in požarnih sistemov v brskalniku, ki ga razvija ekipa petih in deluje na več lokacijah.</p>
-              <div class="marks"><span class="stamp byhand">Ročno</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>licenčni ključi, podpisani v trezorju ključev</li><li>ponovljena sporočila avtomatizacije ne morejo sprožiti dvakrat</li><li>preverjanje ob gradnji, da ima vsaka končna točka pravilo za dostop</li></ul></div>
-          </div>
-                  <div class="photos">
-            <a class="photo" href="assets/webscada/01-floor-plan-alarms.webp"><img src="assets/webscada/01-floor-plan-alarms.thumb.webp" decoding="async" alt="Tloris predstavitvene poslovne stavbe v živo, z dvema javljalnikoma dima in požarno centralo v alarmu ter seznamom aktivnih alarmov nad tlorisom" loading="lazy"><span class="cap">tloris v živo z alarmi</span></a>
-            <a class="photo" href="assets/webscada/02-device-commands.webp"><img src="assets/webscada/02-device-commands.thumb.webp" decoding="async" alt="Požarna centrala, izbrana na tlorisu, z ukazi v stranski plošči" loading="lazy"><span class="cap">ukazi za požarno centralo</span></a>
-            <a class="photo" href="assets/webscada/03-linked-commands.webp"><img src="assets/webscada/03-linked-commands.thumb.webp" decoding="async" alt="Ukaz za evakuacijo vklopi tudi obe sireni in sprosti požarna vrata na stopnišču" loading="lazy"><span class="cap">povezani ukazi</span></a>
-            <a class="photo" href="assets/webscada/04-events-history.webp"><img src="assets/webscada/04-events-history.thumb.webp" decoding="async" alt="Zgodovina dogodkov z alarmi, napakami, povrnitvami, ukazi operaterja in komentarji" loading="lazy"><span class="cap">zgodovina dogodkov</span></a>
-            <a class="photo" href="assets/webscada/05-first-floor-faults.webp"><img src="assets/webscada/05-first-floor-faults.thumb.webp" decoding="async" alt="Prvo nadstropje z napako črpalke, opozorilom prezračevanja, umazanim javljalnikom dima in merilnikom temperature v živo" loading="lazy"><span class="cap">napake in merilnik v živo</span></a>
-            <a class="photo tall" href="assets/webscada/06-phone-active-events.webp"><img src="assets/webscada/06-phone-active-events.thumb.webp" decoding="async" alt="Ista spletna aplikacija na telefonu z aktivnimi alarmi" loading="lazy"><span class="cap">na telefonu</span></a>
-          </div>
-          <p class="permission">Zasloni iz prave aplikacije, napolnjeni z izmišljenimi podatki za predstavitveno stavbo.</p>
-        </article>
-        <article class="entry" data-area="SW">
-          <h3>Aplikacija za lige v gostilniških igrah, hobi projekt za zabavo <time>2026</time></h3>
-          <p class="gist">Iz prototipa je nastala dokončana aplikacija.</p>
-          <p>Lige, turnirji in lestvice Elo za gostilniške igre, v .NET in Expu. Moje delo je logika lestvic, potisna obvestila in nameščanje na Raspberry Pi.</p>
-          <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span></div>
+          <p>Moj del je gradnik za naročanje, ki se vstavi v katero koli spletno stran, in pot nazaj v koledar stranke.</p>
+          <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span><a class="go small" href="#case4">Preberi celo zgodbo</a></div>
         </article>
         <article class="entry" data-area="SW PLC">
           <h3>Domača avtomatizacija z glasovnim upravljanjem <time>2026</time></h3>
-          <p class="gist">Asistent, ki dela naprej, tudi ko kateri od njegovih delov odpove.</p>
-          <div class="entry-body">
-            <div class="entry-main">
-              <p><span class="lbl">kaj dela</span>S hišo se pogovarjaš, ta pa prek Home Assistanta upravlja luči, stikala in opomnike.</p>
-              <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
-            </div>
-            <div class="how"><span class="lbl">kako je zgrajeno</span><ul><li>vsi modeli UI za enim vmesnikom, s samodejnim preklopom na model, ki deluje</li><li>ukazi za dom gredo najprej v Home Assistant, zato luči delujejo tudi pri ugasnjenem računalniku</li></ul></div>
-          </div>
+          <p>S hišo se pogovarjaš, ta pa prek Home Assistanta upravlja luči, stikala in opomnike, tudi ko kakšen del ne deluje.</p>
+          <div class="marks"><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span><span class="tag plc">PLC</span></div>
         </article>
       </section>
     </div>
@@ -1198,23 +935,80 @@
           <span class="tap hand">tapni skrinjo</span>
         </div>
         <div class="loot">
-          <div class="letter-row">
-            <a class="letter" id="mail" href="mailto:gregor.bucar@gmail.com"><span class="wax">G</span><span class="hand">Piši mi</span><span class="addr">gregor.bucar@gmail.com</span></a>
-            <button class="copy hand" type="button" id="copyMail" data-copy="gregor.bucar@gmail.com">kopiraj naslov</button>
-          </div>
-          <p class="loot-note hand">ali pa s seboj vzemi moj življenjepis</p>
-          <div class="cv-tags">
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-short-EN.pdf" download><b>CV, kratek</b><small>angleško, 2 strani</small></a>
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-long-EN.pdf" download><b>CV, dolg</b><small>angleško, vsi projekti</small></a>
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-short-SL.pdf" download><b>Življenjepis, kratek</b><small>slovensko</small></a>
-            <a class="cvtag" href="cv/Gregor-Bucar-CV-long-SL.pdf" download><b>Življenjepis, dolg</b><small>slovensko</small></a>
-          </div>
           <div class="coins-row">
-            <a class="coin" href="https://github.com/RealGregor" target="_blank" rel="noopener"><span>GitHub</span></a>
-            <a class="coin" href="https://www.linkedin.com/in/gregor-bucar-916128135" target="_blank" rel="noopener"><span>LinkedIn</span></a>
+            <a class="coin" href="https://github.com/RealGregor" target="_blank" rel="noopener" data-goatcounter-click="github"><span>GitHub</span></a>
+            <a class="coin" href="https://www.linkedin.com/in/gregor-bu%C4%8Dar-916128135" target="_blank" rel="noopener" data-goatcounter-click="linkedin"><span>LinkedIn</span></a>
           </div>
         </div>
       </section>
+    </div>
+  </main>
+
+
+  <!-- ================= FIELD REPORT: WebSCADA ================= -->
+  <main class="page" id="case5">
+    <div class="sheet-wrap">
+      <span class="tape t1"></span>
+      <article class="sheet light report" style="--tilt:.2deg">
+        <a class="back" href="#home">Nazaj v dnevnik</a><br>
+        <span class="report-kind">Pod drobnogledom</span>
+        <h1 class="report-title">WebSCADA, danes EVA</h1>
+        <div class="report-meta"><span class="stamp byhand">Ročno</span><span class="stamp agents">Z agenti</span><span class="tag sw">SW</span><span class="tag plc">PLC</span><span class="hand" style="font-size:28px;color:var(--red)">od 2024 do 2026</span></div>
+        <p class="report-sum">Nadzor požarnovarnostnih in stavbnih sistemov v brskalniku, ki ga razvija ekipa petih in deluje na več lokacijah. Vodim razvoj prehoda in živih tlorisov, moje delo pa so tudi pravila, ki dogodke spremenijo v SMS-e in ukaze.</p>
+        <aside class="sticky">
+          <span class="hand">Kdo stoji za tem</span>
+          <dl>
+            <dt>Razvoj</dt><dd>Ekipa petih</dd>
+            <dt>Moj del</dt><dd>Prehod, tlorisi, globalne povezave in SMS</dd>
+            <dt>Stanje</dt><dd>Deluje na več lokacijah</dd>
+            <dt>Koda</dt><dd>Zasebna</dd>
+          </dl>
+        </aside>
+        <h3>Kaj dela</h3>
+        <p>Požarne centrale več proizvajalcev in druge naprave v stavbi poročajo majhnemu prehodu na lokaciji, ta pa vse posreduje strežniku. Operaterji spremljajo žive tlorise v brskalniku ali na telefonu ter od tam potrjujejo alarme in pošiljajo ukaze.</p>
+        <h3>Kako se deli povežejo</h3>
+        <figure class="map">
+          <svg viewBox="0 0 900 470" role="img" aria-label="Zemljevid zaklada za sistem, na katerem požarne centrale pošiljajo podatke mojemu prehodu na lokaciji, prehod sega do API-ja, moj mehanizem povezav v API-ju pa pošilja žive podatke spletni aplikaciji in alarme storitvi SMS, e-pošti in webhookom.">
+            <g class="waves"><path class="wave" d="M330,60 q8,-8 16,0 t16,0"/><path class="wave" d="M600,40 q8,-8 16,0 t16,0"/><path class="wave" d="M40,200 q8,-8 16,0 t16,0"/><path class="wave" d="M860,200 q8,-8 16,0 t16,0"/><path class="wave" d="M80,440 q8,-8 16,0 t16,0"/><path class="wave" d="M700,450 q8,-8 16,0 t16,0"/></g>
+            <ellipse class="isl" cx="130" cy="95" rx="105" ry="50"/><text class="il" x="130" y="91">Požarne centrale</text><text class="is" x="130" y="111">več proizvajalcev</text>
+            <ellipse class="isl" cx="160" cy="300" rx="135" ry="74"/><ellipse class="isl-in" cx="160" cy="300" rx="110" ry="56"/>
+            <text class="il" x="160" y="288">Prehod</text><text class="is" x="160" y="310">na lokaciji, Windows ali Linux</text>
+            <g transform="translate(160,343)"><path class="xm" d="M-12,-12 L12,12 M12,-12 L-12,12"/></g>
+            <ellipse class="isl" cx="525" cy="210" rx="170" ry="95"/><ellipse class="isl-in" cx="525" cy="210" rx="142" ry="74"/>
+            <text class="il" x="525" y="170">API</text><text class="is" x="525" y="192">ASP.NET Core, SQL Server, SignalR</text>
+            <rect class="fort" x="490" y="212" width="70" height="38" rx="3"/><path class="fort" d="M490,212 l8,-10 l8,10 l8,-10 l8,10 l8,-10 l8,10 l8,-10 l8,10"/><text class="xl" x="525" y="272">moj mehanizem povezav</text>
+            <ellipse class="isl" cx="790" cy="80" rx="98" ry="50"/><text class="il" x="790" y="76">Spletna aplikacija</text><text class="is" x="790" y="96">živi tlorisi</text>
+            <ellipse class="isl" cx="785" cy="330" rx="105" ry="50"/><text class="il" x="785" y="326">Storitev SMS</text><text class="is" x="785" y="346">modem GSM, ukazi AT</text>
+            <ellipse class="isl" cx="500" cy="420" rx="105" ry="34"/><text class="il" x="500" y="427">E-pošta, webhooki</text>
+            <path class="rt key" d="M135,147 C140,175 150,200 156,224"/><text class="rl key" x="250" y="188">lastni protokoli, Modbus</text>
+            <path class="rt key" d="M292,282 C320,272 340,262 362,250"/><text class="rl key" x="400" y="345">SignalR, ob izpadu v vrsti</text>
+            <path class="rt key" d="M640,140 C670,120 690,110 705,104"/><text class="rl key" x="748" y="160">v živo prek SignalR</text>
+            <path class="rt key" d="M655,272 C675,290 688,298 700,304"/><text class="rl key" x="625" y="330">SMS ob alarmu</text>
+            <path class="rt" d="M590,298 C585,330 575,360 562,390"/>
+          </svg>
+          <figcaption>Rdeče poti so moje. Prehod med izpadom strežnika hrani sporočila na disku, moj mehanizem povezav v API-ju pa dogodke spremeni v akcije. Preostanek API-ja je večinoma delo ekipe.</figcaption>
+        </figure>
+        <h3>Kaj je nastalo</h3>
+        <ul>
+          <li><em>Prehod</em> teče na računalniku z Windows ali na Raspberry Pi in vsak protokol naloži kot vtičnik. Moje delo sta gonilnik za centrale enega proizvajalca in splošni gonilnik Modbus, ki zemljevid registrov vsake centrale prebere iz njene konfiguracije, zato nova centrala le redko potrebuje novo kodo. <span class="mini">gonilnik ročno od 2024 do 2025, vtičniki in Modbus z agenti 2026</span></li>
+          <li><em>Izpad strežnika ga ne ustavi.</em> Prehod še naprej poizveduje po centralah in sporočila shranjuje na disk, po ponovnem zagonu pa začne z zadnjo shranjeno konfiguracijo. Če se prehod utiša, strežnik v 90 sekundah sproži alarm, kar ustreza stopnji SP5 standarda EN 50136. <span class="mini">z agenti, 2026</span></li>
+          <li><em>Globalne povezave</em> so pravila, ki dogodke povežejo z akcijami. Operaterji pogoje sestavijo iz skupin IN in ALI, pravilo pa lahko pošlje SMS ali e-pošto, pokliče webhook, da ukaz napravi ali piše na serijska vrata. Čas mirovanja in dnevna omejitev SMS-ov preprečita, da bi javljalnik, ki se neprestano proži, zasul telefone, ponovljeno sporočilo pa pravila nikoli ne sproži dvakrat. <span class="mini">z agenti, 2026</span></li>
+          <li><em>SMS prek modema GSM.</em> Majhna storitev krmili modem na USB z ukazi AT, zato lahko lokacija pošilja alarmne SMS-e brez spletnega ponudnika. Modem, ki neha odgovarjati, znova odpre, zavrnjene kode PIN pa nikoli ne poskusi znova, ker tretji napačni poskus zaklene kartico SIM. <span class="mini">z agenti, 2026</span></li>
+          <li><em>Živi tlorisi</em> na platnu Konva, ki jih operaterji uredijo sami, s poravnavo na mrežo. Alarmi utripajo glede na prioriteto, stanje naprave se prenese na njeno centralo, novi alarmi pa se oglasijo z zvokom. En pritisk lahko da ukaz več napravam, zato evakuacija vklopi še sirene in sprosti požarna vrata. <span class="mini">ročno 2025, povezani ukazi z agenti 2026</span></li>
+        </ul>
+        <h3>Zasloni</h3>
+        <div class="photos">
+          <a class="photo" href="assets/webscada/01-floor-plan-alarms.webp"><img src="assets/webscada/01-floor-plan-alarms.thumb.webp" decoding="async" alt="Tloris predstavitvene poslovne stavbe v živo, z dvema javljalnikoma dima in požarno centralo v alarmu ter seznamom aktivnih alarmov nad tlorisom" loading="lazy"><span class="cap">tloris v živo z alarmi</span></a>
+          <a class="photo" href="assets/webscada/02-device-commands.webp"><img src="assets/webscada/02-device-commands.thumb.webp" decoding="async" alt="Požarna centrala, izbrana na tlorisu, z ukazi v stranski plošči" loading="lazy"><span class="cap">ukazi za požarno centralo</span></a>
+          <a class="photo" href="assets/webscada/03-linked-commands.webp"><img src="assets/webscada/03-linked-commands.thumb.webp" decoding="async" alt="Ukaz za evakuacijo vklopi tudi obe sireni in sprosti požarna vrata na stopnišču" loading="lazy"><span class="cap">povezani ukazi</span></a>
+          <a class="photo" href="assets/webscada/04-events-history.webp"><img src="assets/webscada/04-events-history.thumb.webp" decoding="async" alt="Zgodovina dogodkov z alarmi, napakami, povrnitvami, ukazi operaterja in komentarji" loading="lazy"><span class="cap">zgodovina dogodkov</span></a>
+          <a class="photo" href="assets/webscada/05-first-floor-faults.webp"><img src="assets/webscada/05-first-floor-faults.thumb.webp" decoding="async" alt="Prvo nadstropje z napako črpalke, opozorilom prezračevanja, umazanim javljalnikom dima in merilnikom temperature v živo" loading="lazy"><span class="cap">napake in merilnik v živo</span></a>
+          <a class="photo tall" href="assets/webscada/06-phone-active-events.webp"><img src="assets/webscada/06-phone-active-events.thumb.webp" decoding="async" alt="Ista spletna aplikacija na telefonu z aktivnimi alarmi" loading="lazy"><span class="cap">na telefonu</span></a>
+        </div>
+        <p class="permission">Zasloni iz prave aplikacije, napolnjeni z izmišljenimi podatki za predstavitveno stavbo.</p>
+        <h3>Kaj je zgradila ekipa</h3>
+        <p>Ekipa je razvila temelje API-ja in bazo podatkov, prvo različico spletne aplikacije in gonilnik drugega proizvajalca.</p>
+      </article>
     </div>
   </main>
 
@@ -1827,9 +1621,16 @@
   // ---------- pages: the hash picks the page; turning to it flips the sheet ----------
   var pages = $$('.page');
   var homeY = 0;
+  // ---------- visitor stats: an event for each story opened, once GoatCounter has loaded (an ad blocker may stop it, which is fine) ----------
+  function stat(path) {
+    function send() { if (window.goatcounter && goatcounter.count) goatcounter.count({ path: path, title: path, event: true }); }
+    if (document.readyState === 'complete') send(); else addEventListener('load', send);
+  }
+
   function show(id, animate) {
     var next = document.getElementById(id), cur = $('.page.on');
     if (!next || !next.classList.contains('page')) next = home;
+    if (next !== home && next !== cur) stat('story-' + next.id);
     if (cur === next) { buildTrail(); return; }
     // remember where the reader was in the journal, and bring them back there from a field report
     if (cur === home) homeY = scrollY;
@@ -1924,7 +1725,14 @@
     else { var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); play(); } }, { threshold: .45 }); io.observe(t); }
     t.addEventListener('click', function () { t.classList.add('play'); setOpen(!t.classList.contains('open')); });
     t.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.click(); } });
+  })();
+
+  // ---------- the e-mail address under the CVs can be copied ----------
+  (function () {
+    var copyBtn = $('#copyMail');
+    if (!copyBtn) return;
     copyBtn.addEventListener('click', function () {
+      stat('email-copied');
       var text = copyBtn.dataset.copy, done = function () { copyBtn.textContent = tr('copied!', 'kopirano!'); setTimeout(function () { copyBtn.textContent = tr('copy the address', 'kopiraj naslov'); }, 1600); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () {}); else done();
     });
@@ -1977,6 +1785,68 @@
     }, { passive: true });
   })();
 
+  // ---------- on a short screen the right-hand column sticks by its bottom, so the CVs and the letter stay in view ----------
+  (function () {
+    var rail = $('.ribbons-in'), wide = matchMedia('(min-width: 1081px)');
+    if (!rail) return;
+    function fit() { rail.style.setProperty('--rail-top', wide.matches ? Math.min(70, innerHeight - rail.offsetHeight - 30) + 'px' : ''); }
+    addEventListener('resize', fit); addEventListener('load', fit); fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  })();
+
+  // ---------- the CV tags hang on a twine: scrolling bounces the twine, and each tag swings and twists on its own string ----------
+  (function () {
+    var line = $('.post .line'), wide = matchMedia('(min-width: 1081px)');
+    if (!line || reduce) return;
+    var path = $('.twine path', line), raf = 0, last = 0, sy = scrollY, st = 0, sv = 0, wind = 0;
+    var s = 0, ds = 0;   // how far the twine sags past its rest, and how fast
+    var tags = $$('.hang', line).map(function (el, i) {
+      var len = parseFloat(el.style.getPropertyValue('--len')), x = parseFloat(el.style.getPropertyValue('--x')) / 100;
+      // a longer string swings slower; every tag also gets its own twist and flutter so they never move as one
+      return { el: el, x: x, r: parseFloat(el.style.getPropertyValue('--r')), k: 2600 / (len + 30), a: 0, v: 0, w: 0, wv: 0,
+               f: 7 + i * 2.3, ph: i * 1.7, dir: i % 2 ? -1 : 1 };
+    });
+    function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+    function loop(now) {
+      var dt = Math.min(.04, (now - last) / 1000), moving = false; last = now;
+      if (sv && now - st > 120) { tags.forEach(function (t) { t.v += sv * 22; t.wv -= sv * 40 * t.dir; }); ds += sv * 60; sv = 0; }   // the scrolling stopped: everything swings back
+      wind *= Math.pow(.02, dt);
+      ds += (-140 * s - 7 * ds) * dt; s = Math.max(-4, Math.min(12, s + ds * dt));
+      path.setAttribute('d', 'M2,4 Q100,' + (18 + 2 * s).toFixed(2) + ' 198,4');
+      tags.forEach(function (t) {
+        var gust = wind * Math.sin(now / 1000 * t.f + t.ph);
+        t.v += (-t.k * t.a - 2.6 * t.v + gust * 260) * dt; t.a = Math.max(-35, Math.min(35, t.a + t.v * dt));
+        t.wv += (-90 * t.w - 3.4 * t.wv + gust * 520 * t.dir) * dt; t.w = Math.max(-70, Math.min(70, t.w + t.wv * dt));
+        var dy = 4 * s * t.x * (1 - t.x);
+        t.el.style.transform = 'translateY(' + dy.toFixed(2) + 'px) rotate(' + (t.r + t.a).toFixed(2) + 'deg) rotateY(' + t.w.toFixed(1) + 'deg)';
+        if (Math.abs(t.a) > .05 || Math.abs(t.v) > .1 || Math.abs(t.w) > .1 || Math.abs(t.wv) > .2) moving = true;
+      });
+      if (!moving && Math.abs(s) < .02 && Math.abs(ds) < .05 && !sv && wind < .01) {
+        tags.forEach(function (t) { t.el.style.transform = ''; t.a = t.v = t.w = t.wv = 0; });
+        path.setAttribute('d', 'M2,4 Q100,18 198,4'); s = ds = 0; raf = 0; return;
+      }
+      raf = requestAnimationFrame(loop);
+    }
+    addEventListener('scroll', function () {
+      if (!wide.matches || !home.classList.contains('on')) return;
+      var now = performance.now(), dt = Math.max(16, now - st), nv = (scrollY - sy) / dt;
+      if (now - st > 120) sv = 0;
+      // a change of scroll speed tugs the tags, the twine dips, and fast scrolling blows on them like wind
+      tags.forEach(function (t) { t.v -= (nv - sv) * 22; t.wv += (nv - sv) * 40 * t.dir; });
+      ds -= (nv - sv) * 60; wind = Math.min(1, Math.max(wind, Math.abs(nv) / 3));
+      sy = scrollY; st = now; sv = nv;
+      kick();
+    }, { passive: true });
+    // brushing past a tag with the mouse sets it swinging
+    tags.forEach(function (t) {
+      t.el.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse' || !wide.matches) return;
+        t.v += e.movementX * 9; t.wv += e.movementX * 14;
+        kick();
+      });
+    });
+  })();
+
   // ---------- animations that loop only run while they can be seen ----------
   if (window.IntersectionObserver) {
     var liveIO = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('live', e.isIntersecting); }); });
@@ -1987,6 +1857,8 @@
   // the site uses the pirate look and the easier-to-read text
   setTheme('pirate');
   setRead('easy');
+  var visit = (location.search.match(/[?&]s=([a-z0-9]{4,12})/) || [])[1];
+  if (visit) stat('s/' + visit);
   show((location.hash || '#home').slice(1), false);
   startIntro();
   restoreSwitch();
